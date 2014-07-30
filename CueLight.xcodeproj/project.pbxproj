@@ -1,0 +1,419 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F25033D9198934FF00598287 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F25033D8198934FF00598287 /* main.m */; };
+		F25033DC198934FF00598287 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F25033DB198934FF00598287 /* AppDelegate.m */; };
+		F25033DF198934FF00598287 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F25033DE198934FF00598287 /* ViewController.m */; };
+		F25033E2198934FF00598287 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F25033E0198934FF00598287 /* Main.storyboard */; };
+		F25033E4198934FF00598287 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F25033E3198934FF00598287 /* Images.xcassets */; };
+		F25033F0198934FF00598287 /* CueLightTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F25033EF198934FF00598287 /* CueLightTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F25033EA198934FF00598287 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F25033CB198934FF00598287 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F25033D2198934FF00598287;
+			remoteInfo = CueLight;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F25033D3198934FF00598287 /* CueLight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CueLight.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F25033D7198934FF00598287 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F25033D8198934FF00598287 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F25033DA198934FF00598287 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F25033DB198934FF00598287 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F25033DD198934FF00598287 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F25033DE198934FF00598287 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F25033E1198934FF00598287 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F25033E3198934FF00598287 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F25033E9198934FF00598287 /* CueLightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CueLightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F25033EE198934FF00598287 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F25033EF198934FF00598287 /* CueLightTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CueLightTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F25033D0198934FF00598287 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F25033E6198934FF00598287 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F25033CA198934FF00598287 = {
+			isa = PBXGroup;
+			children = (
+				F25033D5198934FF00598287 /* CueLight */,
+				F25033EC198934FF00598287 /* CueLightTests */,
+				F25033D4198934FF00598287 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F25033D4198934FF00598287 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F25033D3198934FF00598287 /* CueLight.app */,
+				F25033E9198934FF00598287 /* CueLightTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F25033D5198934FF00598287 /* CueLight */ = {
+			isa = PBXGroup;
+			children = (
+				F25033DA198934FF00598287 /* AppDelegate.h */,
+				F25033DB198934FF00598287 /* AppDelegate.m */,
+				F25033DD198934FF00598287 /* ViewController.h */,
+				F25033DE198934FF00598287 /* ViewController.m */,
+				F25033E0198934FF00598287 /* Main.storyboard */,
+				F25033E3198934FF00598287 /* Images.xcassets */,
+				F25033D6198934FF00598287 /* Supporting Files */,
+			);
+			path = CueLight;
+			sourceTree = "<group>";
+		};
+		F25033D6198934FF00598287 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F25033D7198934FF00598287 /* Info.plist */,
+				F25033D8198934FF00598287 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F25033EC198934FF00598287 /* CueLightTests */ = {
+			isa = PBXGroup;
+			children = (
+				F25033EF198934FF00598287 /* CueLightTests.m */,
+				F25033ED198934FF00598287 /* Supporting Files */,
+			);
+			path = CueLightTests;
+			sourceTree = "<group>";
+		};
+		F25033ED198934FF00598287 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F25033EE198934FF00598287 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F25033D2198934FF00598287 /* CueLight */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F25033F3198934FF00598287 /* Build configuration list for PBXNativeTarget "CueLight" */;
+			buildPhases = (
+				F25033CF198934FF00598287 /* Sources */,
+				F25033D0198934FF00598287 /* Frameworks */,
+				F25033D1198934FF00598287 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CueLight;
+			productName = CueLight;
+			productReference = F25033D3198934FF00598287 /* CueLight.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F25033E8198934FF00598287 /* CueLightTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F25033F6198934FF00598287 /* Build configuration list for PBXNativeTarget "CueLightTests" */;
+			buildPhases = (
+				F25033E5198934FF00598287 /* Sources */,
+				F25033E6198934FF00598287 /* Frameworks */,
+				F25033E7198934FF00598287 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F25033EB198934FF00598287 /* PBXTargetDependency */,
+			);
+			name = CueLightTests;
+			productName = CueLightTests;
+			productReference = F25033E9198934FF00598287 /* CueLightTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F25033CB198934FF00598287 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Callum Ryan";
+				TargetAttributes = {
+					F25033D2198934FF00598287 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					F25033E8198934FF00598287 = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = F25033D2198934FF00598287;
+					};
+				};
+			};
+			buildConfigurationList = F25033CE198934FF00598287 /* Build configuration list for PBXProject "CueLight" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F25033CA198934FF00598287;
+			productRefGroup = F25033D4198934FF00598287 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F25033D2198934FF00598287 /* CueLight */,
+				F25033E8198934FF00598287 /* CueLightTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F25033D1198934FF00598287 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F25033E2198934FF00598287 /* Main.storyboard in Resources */,
+				F25033E4198934FF00598287 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F25033E7198934FF00598287 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F25033CF198934FF00598287 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F25033DF198934FF00598287 /* ViewController.m in Sources */,
+				F25033DC198934FF00598287 /* AppDelegate.m in Sources */,
+				F25033D9198934FF00598287 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F25033E5198934FF00598287 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F25033F0198934FF00598287 /* CueLightTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F25033EB198934FF00598287 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F25033D2198934FF00598287 /* CueLight */;
+			targetProxy = F25033EA198934FF00598287 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F25033E0198934FF00598287 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F25033E1198934FF00598287 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F25033F1198934FF00598287 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				METAL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F25033F2198934FF00598287 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				METAL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F25033F4198934FF00598287 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = CueLight/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F25033F5198934FF00598287 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = CueLight/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F25033F7198934FF00598287 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CueLight.app/CueLight";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CueLightTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Debug;
+		};
+		F25033F8198934FF00598287 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CueLight.app/CueLight";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CueLightTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F25033CE198934FF00598287 /* Build configuration list for PBXProject "CueLight" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F25033F1198934FF00598287 /* Debug */,
+				F25033F2198934FF00598287 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F25033F3198934FF00598287 /* Build configuration list for PBXNativeTarget "CueLight" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F25033F4198934FF00598287 /* Debug */,
+				F25033F5198934FF00598287 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F25033F6198934FF00598287 /* Build configuration list for PBXNativeTarget "CueLightTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F25033F7198934FF00598287 /* Debug */,
+				F25033F8198934FF00598287 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F25033CB198934FF00598287 /* Project object */;
+}
