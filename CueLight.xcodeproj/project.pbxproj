@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		F25033D9198934FF00598287 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F25033D8198934FF00598287 /* main.m */; };
 		F25033DC198934FF00598287 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F25033DB198934FF00598287 /* AppDelegate.m */; };
-		F25033DF198934FF00598287 /* MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F25033DE198934FF00598287 /* MainVC.m */; };
 		F25033E2198934FF00598287 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F25033E0198934FF00598287 /* Main.storyboard */; };
 		F25033E4198934FF00598287 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F25033E3198934FF00598287 /* Images.xcassets */; };
 		F25033F0198934FF00598287 /* CueLightTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F25033EF198934FF00598287 /* CueLightTests.m */; };
+		F2DFB8B4199911D50028669A /* MPController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DFB8B3199911D50028669A /* MPController.m */; };
+		F2DFB8B6199911EC0028669A /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DFB8B5199911EC0028669A /* MultipeerConnectivity.framework */; };
+		F2DFB8B9199919330028669A /* showVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DFB8B8199919330028669A /* showVC.m */; };
 		F2FE711E1989390800D9A9D6 /* ListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FE711D1989390800D9A9D6 /* ListVC.m */; };
 		F2FE71211989395D00D9A9D6 /* ButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FE71201989395D00D9A9D6 /* ButtonView.m */; };
 		F2FE712419893B2E00D9A9D6 /* cueTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FE712319893B2E00D9A9D6 /* cueTVC.m */; };
@@ -34,13 +36,16 @@
 		F25033D8198934FF00598287 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F25033DA198934FF00598287 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F25033DB198934FF00598287 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F25033DD198934FF00598287 /* MainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainVC.h; sourceTree = "<group>"; };
-		F25033DE198934FF00598287 /* MainVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainVC.m; sourceTree = "<group>"; };
 		F25033E1198934FF00598287 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F25033E3198934FF00598287 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F25033E9198934FF00598287 /* CueLightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CueLightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F25033EE198934FF00598287 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F25033EF198934FF00598287 /* CueLightTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CueLightTests.m; sourceTree = "<group>"; };
+		F2DFB8B2199911D50028669A /* MPController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPController.h; sourceTree = "<group>"; };
+		F2DFB8B3199911D50028669A /* MPController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPController.m; sourceTree = "<group>"; };
+		F2DFB8B5199911EC0028669A /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
+		F2DFB8B7199919330028669A /* showVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = showVC.h; sourceTree = "<group>"; };
+		F2DFB8B8199919330028669A /* showVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = showVC.m; sourceTree = "<group>"; };
 		F2FE711C1989390800D9A9D6 /* ListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListVC.h; sourceTree = "<group>"; };
 		F2FE711D1989390800D9A9D6 /* ListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListVC.m; sourceTree = "<group>"; };
 		F2FE711F1989395D00D9A9D6 /* ButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonView.h; sourceTree = "<group>"; };
@@ -54,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2DFB8B6199911EC0028669A /* MultipeerConnectivity.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +76,7 @@
 		F25033CA198934FF00598287 = {
 			isa = PBXGroup;
 			children = (
+				F2DFB8B5199911EC0028669A /* MultipeerConnectivity.framework */,
 				F25033D5198934FF00598287 /* CueLight */,
 				F25033EC198934FF00598287 /* CueLightTests */,
 				F25033D4198934FF00598287 /* Products */,
@@ -90,13 +97,15 @@
 			children = (
 				F25033DA198934FF00598287 /* AppDelegate.h */,
 				F25033DB198934FF00598287 /* AppDelegate.m */,
-				F25033DD198934FF00598287 /* MainVC.h */,
-				F25033DE198934FF00598287 /* MainVC.m */,
 				F25033E0198934FF00598287 /* Main.storyboard */,
+				F2DFB8B7199919330028669A /* showVC.h */,
+				F2DFB8B8199919330028669A /* showVC.m */,
 				F2FE712219893B2E00D9A9D6 /* cueTVC.h */,
 				F2FE712319893B2E00D9A9D6 /* cueTVC.m */,
 				F2FE711C1989390800D9A9D6 /* ListVC.h */,
 				F2FE711D1989390800D9A9D6 /* ListVC.m */,
+				F2DFB8B2199911D50028669A /* MPController.h */,
+				F2DFB8B3199911D50028669A /* MPController.m */,
 				F2FE711F1989395D00D9A9D6 /* ButtonView.h */,
 				F2FE71201989395D00D9A9D6 /* ButtonView.m */,
 				F25033E3198934FF00598287 /* Images.xcassets */,
@@ -232,9 +241,10 @@
 			files = (
 				F2FE711E1989390800D9A9D6 /* ListVC.m in Sources */,
 				F2FE71211989395D00D9A9D6 /* ButtonView.m in Sources */,
-				F25033DF198934FF00598287 /* MainVC.m in Sources */,
 				F25033DC198934FF00598287 /* AppDelegate.m in Sources */,
 				F25033D9198934FF00598287 /* main.m in Sources */,
+				F2DFB8B9199919330028669A /* showVC.m in Sources */,
+				F2DFB8B4199911D50028669A /* MPController.m in Sources */,
 				F2FE712419893B2E00D9A9D6 /* cueTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,7 +360,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alan Cropper (2XRPR9MUCT)";
 				INFOPLIST_FILE = CueLight/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -361,7 +373,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alan Cropper (2XRPR9MUCT)";
 				INFOPLIST_FILE = CueLight/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

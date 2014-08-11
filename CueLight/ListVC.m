@@ -8,49 +8,66 @@
 
 #import "ListVC.h"
 #import "ButtonView.h"
+#import "cueTVC.h"
 
 @interface ListVC ()
 
 @end
-@implementation UINavigationBar (customNav)
-- (CGSize)sizeThatFits:(CGSize)size {
-    CGSize newSize = CGSizeMake(self.frame.size.width,88);
-    return newSize;
-}
-@end
+//@implementation UINavigationBar (customNav)
+//- (CGSize)sizeThatFits:(CGSize)size {
+//    CGSize newSize = CGSizeMake(self.frame.size.width,88);
+//    return newSize;
+//}
+//@end
 @implementation ListVC
+@synthesize cueList, button;
 
 //- (instancetype)initWithStyle:(UITableViewStyle)style
 //{
 //    self = [super initWithStyle:style];
 //    if (self) {
-//        // Custom initialization
+//        
 //    }
 //    return self;
 //}
-//
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    ButtonView *button = [[ButtonView alloc]initWithFrame:CGRectMake(0, 0, 320, 108)];
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    [self.tableView registerClass:[cueTVC class] forCellReuseIdentifier:@"cueCell"];
+    
+    self.mpController = [MPController sharedInstance];
+
+    [self.mpController createPeerWithDisplayName:[UIDevice currentDevice].name];
+    [self.mpController createSession];
+    [self.mpController advertiseSelf:YES];
+    
+    
+    self.button = [[ButtonView alloc]initWithFrame:CGRectMake(0,64, 320, 108)];
+    
+    self.cueList = [[NSMutableArray alloc] init];
+    for (int i=1; i<31; i++) {
+        [self.cueList addObject:[NSString stringWithFormat:@"Hello,%d",i]];
+    }
+
+
+    [self.view addSubview:self.button];
+
+
+    [self.tableView setContentInset:UIEdgeInsetsMake(0,0,0,0)];
+    [self.tableView setScrollIndicatorInsets:UIEdgeInsetsMake(0,0,0,0)];
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+//    self.tableView.backgroundColor = [UIColor blackColor];
+//    self.tableView.separatorColor = [UIColor whiteColor];
+//    self.navigationController.navigationBar.hidden = YES;
+    
     
 
-
-    [self.navigationController.view addSubview:button];
-
-
-    [self.tableView setContentInset:UIEdgeInsetsMake(88,0,0,0)];
-    [self.tableView setScrollIndicatorInsets:UIEdgeInsetsMake(88,0,0,0)];
-    self.tableView.backgroundColor = [UIColor grayColor];
-    self.tableView.separatorColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.hidden = YES;
 }
-
-//- (void)didReceiveMemoryWarning
-//{
-//    [super didReceiveMemoryWarning];
-//    // Dispose of any resources that can be recreated.
-//}
 
 #pragma mark - Table view data source
 
@@ -63,42 +80,47 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 30;
+    return self.cueList.count+1;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cueTVC" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor clearColor];
-    cell.backgroundView.backgroundColor = [UIColor clearColor];
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
-    cell.detailTextLabel.text = @"I'm a cueTVC";
-    return cell;
+    if (indexPath.row < self.cueList.count) {
+        cueTVC *cell = (cueTVC *)[tableView dequeueReusableCellWithIdentifier:@"cueCell"];
+        cell.cueNum.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
+        cell.textField.text = self.cueList[indexPath.row];
+        return cell;
+    } else {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"addCell"];
+        return cell;
+    }
+
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    if (indexPath.row > self.cueList.count) {
+        return NO;
+    }
     return YES;
 }
-*/
 
-/*
 // Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+        [self.cueList removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.2];
+    }
 }
-*/
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == self.cueList.count) {
+        [self.cueList addObject:[NSString stringWithFormat:@"Hello,%d",self.cueList.count + 1]];
+        [self.tableView reloadData];
+    }
+}
 
 /*
 // Override to support rearranging the table view.
