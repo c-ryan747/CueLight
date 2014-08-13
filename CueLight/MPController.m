@@ -45,27 +45,38 @@
     }
 }
 
+- (void)setupIfNeeded
+{
+    if (!self.peerID) {
+        [self createPeerWithDisplayName:[UIDevice currentDevice].name];
+    }
+    if (!self.session) {
+        [self createSession];
+    }
+    
+}
 
 #pragma mark - Delegate methods
 - (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state {
     NSDictionary *userInfo = @{ @"peerID": peerID,
                                 @"state" : @(state) };
+    NSLog(@"State info: %@", userInfo);
+    NSLog(@"Message info: %@", userInfo);
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"MPCDemo_DidChangeStateNotification"
-                                                            object:nil
-                                                          userInfo:userInfo];
+        [self.delegate peerListChanged];
     });
+   
+    
 }
 
 - (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID {
     NSDictionary *userInfo = @{ @"data": data,
                                 @"peerID": peerID };
+    NSLog(@"Message info: %@", userInfo);
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"MPCDemo_DidReceiveDataNotification"
-                                                            object:nil
-                                                          userInfo:userInfo];
+        [self.delegate recievedMessage:data fromPeer:peerID];
     });
 }
 
@@ -79,6 +90,20 @@
 
 - (void)session:(MCSession *)session didReceiveStream:(NSInputStream *)stream withName:(NSString *)streamName fromPeer:(MCPeerID *)peerID {
     
+}
+
+
+- (void)sendString:(NSString *)string ToPeers:(NSArray*)peers
+{
+    if (peers.count > 0) {
+        [self.session sendData:[string dataUsingEncoding:NSUTF8StringEncoding] toPeers:peers withMode:MCSessionSendDataReliable error:nil];
+    }
+}
+- (void)sendDictionary:(NSDictionary *)dict ToPeers:(NSArray*)peers
+{
+    if (peers.count > 0) {
+        [self.session sendData:[NSKeyedArchiver archivedDataWithRootObject:dict] toPeers:peers withMode:MCSessionSendDataReliable error:nil];
+    }
 }
 
 @end

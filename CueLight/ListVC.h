@@ -11,7 +11,7 @@
 #import "MPController.h"
 #import "ButtonView.h"
 
-@interface ListVC : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface ListVC : UIViewController <UITableViewDataSource, UITableViewDelegate, MPControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *cueList;
 @property (nonatomic, strong) MPController *mpController;

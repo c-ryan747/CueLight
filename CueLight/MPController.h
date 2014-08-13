@@ -9,17 +9,29 @@
 #import <Foundation/Foundation.h>
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 
+@protocol MPControllerDelegate <NSObject>
+@optional
+- (void)recievedMessage:(NSData *)data fromPeer:(MCPeerID *)peer;
+- (void)peerListChanged;
+@end
+
+
 @interface MPController : NSObject <MCSessionDelegate>
 
 @property (nonatomic, strong) MCPeerID *peerID;
 @property (nonatomic, strong) MCSession *session;
 @property (nonatomic, strong) MCBrowserViewController *browser;
 @property (nonatomic, strong) MCAdvertiserAssistant *advertiser;
+@property (nonatomic, weak  ) id <MPControllerDelegate> delegate;
 
 - (void)createPeerWithDisplayName:(NSString *)displayName;
 - (void)createSession;
 - (void)createBrowser;
 - (void)advertiseSelf:(BOOL)advertise;
+- (void)setupIfNeeded;
+
+- (void)sendString:(NSString *)string ToPeers:(NSArray*)peers;
+- (void)sendDictionary:(NSDictionary *)dict ToPeers:(NSArray*)peers;
 
 +(instancetype)sharedInstance;
 
