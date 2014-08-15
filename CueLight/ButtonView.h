@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ButtonView : UIView
+@interface ButtonView : UIView {
+    NSArray *states;
+}
+@property (        nonatomic) int stateCount;
+@property (strong, nonatomic) UIButton *button;
+
+- (void)nextState;
 
 @end

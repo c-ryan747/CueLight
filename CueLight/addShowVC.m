@@ -13,7 +13,7 @@
 @end
 
 @implementation addShowVC
-
+@synthesize showInfo;
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -27,11 +27,10 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.showInfo = [NSMutableDictionary dictionaryWithCapacity:2];
+    
+    [self.tableView registerClass:[textBoxTVC class] forCellReuseIdentifier:@"textCell"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,76 +43,80 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return 1;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
+    textBoxTVC *cell = (textBoxTVC *)[tableView dequeueReusableCellWithIdentifier:@"textCell" forIndexPath:indexPath];
+    cell.textField.tag = indexPath.section+1;
+    cell.textField.delegate = self;
+    [cell.textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    // Return NO if you do not want the specified item to be editable.
+    if (section == 0) {
+        return @"Shown name";
+    }
+    return @"Operator role";
+}
+
+- (void)textFieldDidChange:(UITextField *)textField
+{
+    if (textField.tag == 1) {
+        self.showInfo[@"showName"] = textField.text;
+    } else {
+        self.showInfo[@"opRole"] = textField.text;
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)aTextfield
+{
+    [aTextfield resignFirstResponder];
     return YES;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (IBAction)finish:(id)sender
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+    if ([(NSString *)self.showInfo[@"showName"] length] == 0 && [(NSString *)self.showInfo[@"opRole"] length] == 0) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Please complete all fields" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+        [alert show];
+    } else {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+        
+        NSInteger currentMaxShowID = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentMaxShowID"];
+        self.showInfo[@"showID"] = [NSNumber numberWithLong:currentMaxShowID + 1];
+        [[NSUserDefaults standardUserDefaults] setInteger:currentMaxShowID + 1 forKey:@"currentMaxShowID"];
+
+        
+        NSMutableArray *shows = [NSMutableArray arrayWithArray:[defaults objectForKey:@"shows"]];
+        
+        [shows addObject:self.showInfo];
+        
+        [defaults setObject:shows forKey:@"shows"];
+        
+        [defaults synchronize];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"showDataChanged" object:self];
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
+- (IBAction)cancel:(id)sender
 {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

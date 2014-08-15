@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ListVC.h"
 
 @interface showVC : UITableViewController
 
 @property (nonatomic, strong) NSMutableArray *shows;
-
-- (IBAction)addBlankShow:(id)sender;
 
 @end

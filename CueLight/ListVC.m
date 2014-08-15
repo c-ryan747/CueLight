@@ -20,16 +20,9 @@
 //}
 //@end
 @implementation ListVC
-@synthesize cueList, button;
+@synthesize cueList, button, showInfo = _showInfo;
 
-//- (instancetype)initWithStyle:(UITableViewStyle)style
-//{
-//    self = [super initWithStyle:style];
-//    if (self) {
-//        
-//    }
-//    return self;
-//}
+
 
 - (void)viewDidLoad
 {
@@ -42,7 +35,7 @@
     
     self.mpController = [MPController sharedInstance];
 
-    [self.mpController setupIfNeeded];
+    [self.mpController setupIfNeededWithName:self.showInfo[@"opRole"]];
     [self.mpController advertiseSelf:YES];
     self.mpController.delegate = self;
     
@@ -124,7 +117,20 @@
 
 - (void)recievedMessage:(NSData *)data fromPeer:(MCPeerID *)peer
 {
-    
+    [self.button nextState];
 }
-
+- (void)setShowInfo:(NSDictionary *)showInfo
+{
+    _showInfo = showInfo;
+    self.title = showInfo[@"showName"];
+}
+-(NSString *)tableView:(UITableView *)tableView titleForSwipeAccessoryButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"Go To Cue";
+}
+-(void)tableView:(UITableView *)tableView swipeAccessoryButtonPushedForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView setEditing:NO animated:YES];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
 @end

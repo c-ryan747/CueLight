@@ -45,10 +45,13 @@
     }
 }
 
-- (void)setupIfNeeded
+- (void)setupIfNeededWithName:(NSString *)name
 {
+    if ([name length] == 0) {
+        name = [UIDevice currentDevice].name;
+    }
     if (!self.peerID) {
-        [self createPeerWithDisplayName:[UIDevice currentDevice].name];
+        [self createPeerWithDisplayName:name];
     }
     if (!self.session) {
         [self createSession];
@@ -64,7 +67,9 @@
     NSLog(@"Message info: %@", userInfo);
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.delegate peerListChanged];
+        if (self.delegate != nil && [self.delegate respondsToSelector:@selector(peerListChanged)]) {
+            [self.delegate peerListChanged];
+        }
     });
    
     

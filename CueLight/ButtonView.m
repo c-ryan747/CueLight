@@ -9,11 +9,16 @@
 #import "ButtonView.h"
 
 @implementation ButtonView
+@synthesize button, stateCount;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         [self.window bringSubviewToFront:self];
+        
+        states = @[@"Relax",@"Get Ready",@"Ready",@"Go"];
+        self.stateCount = 0;
+        
         self.backgroundColor = [UIColor grayColor];
         
         UIView *colour = [[UIView alloc]initWithFrame:CGRectMake(7, 17, 306, 84)];
@@ -35,19 +40,28 @@
 
         
         
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-        button.frame = CGRectMake(10, 20, 300, 78);
-        [button setTitle:@"GO" forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        button.titleLabel.font = [UIFont boldSystemFontOfSize:32.0];
-        button.backgroundColor = [UIColor greenColor];
+        self.button = [UIButton buttonWithType:UIButtonTypeSystem];
+        self.button.frame = CGRectMake(10, 20, 300, 78);
+        [self.button setTitle:states[self.stateCount] forState:UIControlStateNormal];
+        [self.button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        self.button.titleLabel.font = [UIFont boldSystemFontOfSize:32.0];
+        self.button.backgroundColor = [UIColor greenColor];
         
-        button.layer.borderColor = [UIColor whiteColor].CGColor;
-        button.layer.borderWidth = 2.0;
-        button.layer.cornerRadius = 10;
-        [self addSubview:button];
+        self.button.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.button.layer.borderWidth = 2.0;
+        self.button.layer.cornerRadius = 10;
+        [self addSubview:self.button];
     }
     return self;
 }
-
+- (void)nextState
+{
+    if (self.stateCount >= states.count - 1) {
+        self.stateCount = 0;
+    } else {
+        self.stateCount++;
+    }
+    
+    [self.button setTitle:states[self.stateCount] forState:UIControlStateNormal];
+}
 @end

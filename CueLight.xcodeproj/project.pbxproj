@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F20CE6F9199E3DAF0009AFA6 /* textBoxTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F20CE6F8199E3DAF0009AFA6 /* textBoxTVC.m */; };
 		F22A36FD199BF23A00512C87 /* addShowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F22A36FC199BF23A00512C87 /* addShowVC.m */; };
 		F25033D9198934FF00598287 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F25033D8198934FF00598287 /* main.m */; };
 		F25033DC198934FF00598287 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F25033DB198934FF00598287 /* AppDelegate.m */; };
@@ -32,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F20CE6F7199E3DAF0009AFA6 /* textBoxTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = textBoxTVC.h; sourceTree = "<group>"; };
+		F20CE6F8199E3DAF0009AFA6 /* textBoxTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = textBoxTVC.m; sourceTree = "<group>"; };
 		F22A36FB199BF23A00512C87 /* addShowVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addShowVC.h; sourceTree = "<group>"; };
 		F22A36FC199BF23A00512C87 /* addShowVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addShowVC.m; sourceTree = "<group>"; };
 		F25033D3198934FF00598287 /* CueLight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CueLight.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,7 +82,6 @@
 		F25033CA198934FF00598287 = {
 			isa = PBXGroup;
 			children = (
-				F2DFB8B5199911EC0028669A /* MultipeerConnectivity.framework */,
 				F25033D5198934FF00598287 /* CueLight */,
 				F25033EC198934FF00598287 /* CueLightTests */,
 				F25033D4198934FF00598287 /* Products */,
@@ -101,6 +103,8 @@
 				F25033DA198934FF00598287 /* AppDelegate.h */,
 				F25033DB198934FF00598287 /* AppDelegate.m */,
 				F25033E0198934FF00598287 /* Main.storyboard */,
+				F20CE6F7199E3DAF0009AFA6 /* textBoxTVC.h */,
+				F20CE6F8199E3DAF0009AFA6 /* textBoxTVC.m */,
 				F22A36FB199BF23A00512C87 /* addShowVC.h */,
 				F22A36FC199BF23A00512C87 /* addShowVC.m */,
 				F2DFB8B7199919330028669A /* showVC.h */,
@@ -122,6 +126,7 @@
 		F25033D6198934FF00598287 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F2DFB8B5199911EC0028669A /* MultipeerConnectivity.framework */,
 				F25033D7198934FF00598287 /* Info.plist */,
 				F25033D8198934FF00598287 /* main.m */,
 			);
@@ -250,6 +255,7 @@
 				F25033DC198934FF00598287 /* AppDelegate.m in Sources */,
 				F25033D9198934FF00598287 /* main.m in Sources */,
 				F2DFB8B9199919330028669A /* showVC.m in Sources */,
+				F20CE6F9199E3DAF0009AFA6 /* textBoxTVC.m in Sources */,
 				F2DFB8B4199911D50028669A /* MPController.m in Sources */,
 				F2FE712419893B2E00D9A9D6 /* cueTVC.m in Sources */,
 			);

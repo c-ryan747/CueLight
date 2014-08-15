@@ -14,6 +14,7 @@
 @interface ListVC : UIViewController <UITableViewDataSource, UITableViewDelegate, MPControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *cueList;
+@property (nonatomic, strong) NSDictionary *showInfo;
 @property (nonatomic, strong) MPController *mpController;
 @property (nonatomic, strong) ButtonView *button;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

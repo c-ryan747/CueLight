@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "textBoxTVC.h"
 
-@interface addShowVC : UITableViewController
-
+@interface addShowVC : UITableViewController <UITextFieldDelegate>
+@property (strong, nonatomic) NSMutableDictionary *showInfo;
 @end

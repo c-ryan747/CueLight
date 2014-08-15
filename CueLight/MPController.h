@@ -28,7 +28,7 @@
 - (void)createSession;
 - (void)createBrowser;
 - (void)advertiseSelf:(BOOL)advertise;
-- (void)setupIfNeeded;
+- (void)setupIfNeededWithName:(NSString *)name;
 
 - (void)sendString:(NSString *)string ToPeers:(NSArray*)peers;
 - (void)sendDictionary:(NSDictionary *)dict ToPeers:(NSArray*)peers;
