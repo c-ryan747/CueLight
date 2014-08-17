@@ -20,7 +20,7 @@
 //}
 //@end
 @implementation ListVC
-@synthesize cueList, button, showInfo = _showInfo;
+@synthesize cueList, button, showIndex = _showIndex;
 
 
 
@@ -33,19 +33,10 @@
     
     [self.tableView registerClass:[cueTVC class] forCellReuseIdentifier:@"cueCell"];
     
-    self.mpController = [MPController sharedInstance];
-
-    [self.mpController setupIfNeededWithName:self.showInfo[@"opRole"]];
-    [self.mpController advertiseSelf:YES];
-    self.mpController.delegate = self;
-    
     
     self.button = [[ButtonView alloc]initWithFrame:CGRectMake(0,64, 320, 108)];
+    [self.button setConnected:NO];
     
-    self.cueList = [[NSMutableArray alloc] init];
-    for (int i=1; i<31; i++) {
-        [self.cueList addObject:[NSString stringWithFormat:@"Hello,%d",i]];
-    }
 
 
     [self.view addSubview:self.button];
@@ -54,11 +45,6 @@
     [self.tableView setContentInset:UIEdgeInsetsMake(0,0,0,0)];
     [self.tableView setScrollIndicatorInsets:UIEdgeInsetsMake(0,0,0,0)];
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-//    self.tableView.backgroundColor = [UIColor blackColor];
-//    self.tableView.separatorColor = [UIColor whiteColor];
-//    self.navigationController.navigationBar.hidden = YES;
-    
-    
 
 }
 
@@ -83,6 +69,8 @@
         cueTVC *cell = (cueTVC *)[tableView dequeueReusableCellWithIdentifier:@"cueCell"];
         cell.cueNum.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
         cell.textField.text = self.cueList[indexPath.row];
+        cell.textField.delegate = self;
+        cell.textField.tag = indexPath.row;
         return cell;
     } else {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"addCell"];
@@ -102,6 +90,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.cueList removeObjectAtIndex:indexPath.row];
+        [self saveCues];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         [tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.2];
     }
@@ -111,6 +100,7 @@
 {
     if (indexPath.row == self.cueList.count) {
         [self.cueList addObject:[NSString stringWithFormat:@"Hello,%lu",self.cueList.count + 1]];
+        [self saveCues];
         [self.tableView reloadData];
     }
 }
@@ -119,10 +109,29 @@
 {
     [self.button nextState];
 }
-- (void)setShowInfo:(NSDictionary *)showInfo
+- (void)peerListChanged
 {
-    _showInfo = showInfo;
-    self.title = showInfo[@"showName"];
+    [self.button setConnected:YES];
+    [self.button resetState];
+}
+- (void)setShowIndex:(int)showIndex
+{
+    _showIndex = showIndex;
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSArray *shows = [NSArray arrayWithArray:[defaults objectForKey:@"shows"]];
+    NSDictionary *show = shows[showIndex];
+    self.title = show[@"showName"];
+    
+    self.cueList = [NSMutableArray arrayWithArray:show[@"cues"]];
+    
+    
+    self.mpController = [MPController sharedInstance];
+    
+    [self.mpController setupIfNeededWithName:show[@"opRole"]];
+    [self.mpController advertiseSelf:YES];
+    self.mpController.delegate = self;
 }
 -(NSString *)tableView:(UITableView *)tableView titleForSwipeAccessoryButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -132,5 +141,27 @@
 {
     [self.tableView setEditing:NO animated:YES];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
+- (void)saveCues {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSMutableArray *shows = [NSMutableArray arrayWithArray:[defaults objectForKey:@"shows"]];
+    NSMutableDictionary *show = [NSMutableDictionary dictionaryWithDictionary:shows[self.showIndex]];
+    [show setObject:self.cueList forKey:@"cues"];
+    
+    [shows replaceObjectAtIndex:self.showIndex withObject:show];
+    [defaults setObject:shows forKey:@"shows"];
+    [defaults synchronize];
+    
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.cueList[textField.tag] = textField.text;
+    [self saveCues];
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
 }
 @end

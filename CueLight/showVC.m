@@ -88,7 +88,7 @@
     if ([segue.identifier isEqualToString:@"goToList"])
     {
         ListVC *vc = [segue destinationViewController];
-        [vc setShowInfo:self.shows[indexPath.row]];
+        [vc setShowIndex:(int)indexPath.row];
     }
 }
 

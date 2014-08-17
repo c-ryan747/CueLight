@@ -19,6 +19,7 @@
 @interface MPController : NSObject <MCSessionDelegate>
 
 @property (nonatomic, strong) MCPeerID *peerID;
+@property (nonatomic, strong) MCPeerID *controllerID;
 @property (nonatomic, strong) MCSession *session;
 @property (nonatomic, strong) MCBrowserViewController *browser;
 @property (nonatomic, strong) MCAdvertiserAssistant *advertiser;

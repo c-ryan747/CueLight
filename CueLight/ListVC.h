@@ -11,13 +11,14 @@
 #import "MPController.h"
 #import "ButtonView.h"
 
-@interface ListVC : UIViewController <UITableViewDataSource, UITableViewDelegate, MPControllerDelegate>
+@interface ListVC : UIViewController <UITableViewDataSource, UITableViewDelegate, MPControllerDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) NSMutableArray *cueList;
-@property (nonatomic, strong) NSDictionary *showInfo;
+@property (nonatomic        ) int showIndex;
 @property (nonatomic, strong) MPController *mpController;
 @property (nonatomic, strong) ButtonView *button;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+- (void)saveCues;
+- (void)setShowIndex:(int)showIndex;
 
 @end

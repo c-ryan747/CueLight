@@ -99,6 +99,8 @@
         NSInteger currentMaxShowID = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentMaxShowID"];
         self.showInfo[@"showID"] = [NSNumber numberWithLong:currentMaxShowID + 1];
         [[NSUserDefaults standardUserDefaults] setInteger:currentMaxShowID + 1 forKey:@"currentMaxShowID"];
+        
+        self.showInfo[@"cues"] = [NSArray array];
 
         
         NSMutableArray *shows = [NSMutableArray arrayWithArray:[defaults objectForKey:@"shows"]];

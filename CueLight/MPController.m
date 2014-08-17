@@ -9,7 +9,7 @@
 #import "MPController.h"
 
 @implementation MPController
-
+@synthesize controllerID;
 #pragma mark - Own methods
 +(instancetype)sharedInstance
 {
@@ -76,13 +76,18 @@
 }
 
 - (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID {
-    NSDictionary *userInfo = @{ @"data": data,
-                                @"peerID": peerID };
-    NSLog(@"Message info: %@", userInfo);
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.delegate recievedMessage:data fromPeer:peerID];
-    });
+    id receivedObject = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    if ([receivedObject isKindOfClass:[NSString class]]) {
+        NSString *recievedString = receivedObject;
+        if ([recievedString isEqualToString:@"imTheController"]) {
+            self.controllerID = peerID;
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate recievedMessage:data fromPeer:peerID];
+            });
+        }
+    }
 }
 
 - (void)session:(MCSession *)session didStartReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID withProgress:(NSProgress *)progress {
@@ -101,7 +106,7 @@
 - (void)sendString:(NSString *)string ToPeers:(NSArray*)peers
 {
     if (peers.count > 0) {
-        [self.session sendData:[string dataUsingEncoding:NSUTF8StringEncoding] toPeers:peers withMode:MCSessionSendDataReliable error:nil];
+        [self.session sendData:[NSKeyedArchiver archivedDataWithRootObject:string] toPeers:peers withMode:MCSessionSendDataReliable error:nil];
     }
 }
 - (void)sendDictionary:(NSDictionary *)dict ToPeers:(NSArray*)peers

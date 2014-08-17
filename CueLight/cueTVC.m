@@ -18,7 +18,7 @@
 //        self.cueNum.textColor = [UIColor whiteColor];
         
         self.textField = [[UITextField alloc] initWithFrame:CGRectMake(70, 7, 230, 30)];
-        self.textField.delegate = self;
+        self.textField.returnKeyType = UIReturnKeyDone;
 //        self.textField.textColor = [UIColor whiteColor];
     
         [self.contentView addSubview:self.textField];

@@ -62,7 +62,7 @@
             </objects>
             <point key="canvasLocation" x="706.5" y="353.25"/>
         </scene>
-        <!--Add ShowVC-->
+        <!--Add ShowVC - Setup-->
         <scene sceneID="x6U-4P-3iI">
             <objects>
                 <tableViewController id="FRk-uE-8TJ" customClass="addShowVC" sceneMemberID="viewController">
@@ -77,7 +77,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="FUA-zU-gbR">
+                    <navigationItem key="navigationItem" title="Setup" id="FUA-zU-gbR">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="m9I-W4-eAo">
                             <connections>
                                 <action selector="cancel:" destination="FRk-uE-8TJ" id="BLr-Is-sR5"/>
