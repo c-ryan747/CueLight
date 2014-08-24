@@ -13,6 +13,7 @@
 @optional
 - (void)recievedMessage:(NSData *)data fromPeer:(MCPeerID *)peer;
 - (void)peerListChanged;
+- (void)recieveNewCues:(NSArray *)cues fromPeer:(MCPeerID *)peer;
 @end
 
 
@@ -31,8 +32,7 @@
 - (void)advertiseSelf:(BOOL)advertise;
 - (void)setupIfNeededWithName:(NSString *)name;
 
-- (void)sendString:(NSString *)string ToPeers:(NSArray*)peers;
-- (void)sendDictionary:(NSDictionary *)dict ToPeers:(NSArray*)peers;
+- (void)sendObject:(id)obj ToPeers:(NSArray*)peers;
 
 +(instancetype)sharedInstance;
 

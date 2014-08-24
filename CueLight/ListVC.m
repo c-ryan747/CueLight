@@ -20,7 +20,7 @@
 //}
 //@end
 @implementation ListVC
-@synthesize cueList, button, showIndex = _showIndex;
+@synthesize cueList, button, showIndex = _showIndex, currentCue = _currentCue;
 
 
 
@@ -108,12 +108,41 @@
 - (void)recievedMessage:(NSData *)data fromPeer:(MCPeerID *)peer
 {
     [self.button nextState];
+    if (self.button.stateCount == 0) {
+        self.currentCue++;
+        [self.tableView setEditing:NO animated:YES];
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentCue inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        [self sendCuesToController];
+    }
 }
 - (void)peerListChanged
 {
-    [self.button setConnected:YES];
-    [self.button resetState];
+    
+    if ([self.mpController.session.connectedPeers containsObject:self.mpController.controllerID]) {
+        [self.button setConnected:YES];
+        [self.button resetState];
+    } else {
+        [self.button setConnected:NO];
+    }
 }
+
+- (void)sendCuesToController
+{
+    //NSArray *topThree = [self.cueList subarrayWithRange:NSMakeRange(self.currentCue, 3)];
+    NSMutableArray *topThree = [NSMutableArray arrayWithArray:@[@"",@"",@""]];
+    for (int i=0; i<3; i++) {
+        @try {
+            NSString *text = self.cueList[self.currentCue + i];
+            topThree[i] = [NSString stringWithFormat:@"%d. %@", i+1, text];
+        }
+        @catch (NSException *exception) {
+            topThree[i] = @"";
+        }
+    }
+    
+    [self.mpController sendObject:topThree ToPeers:@[self.mpController.controllerID]];
+}
+
 - (void)setShowIndex:(int)showIndex
 {
     _showIndex = showIndex;

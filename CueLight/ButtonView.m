@@ -109,7 +109,7 @@
     } else {
         [self nextState];
         
-        [[MPController sharedInstance] sendString:@"nextState" ToPeers:[NSArray arrayWithObject:[MPController sharedInstance].controllerID]];
+        [[MPController sharedInstance] sendObject:@"nextState" ToPeers:@[[MPController sharedInstance].controllerID]];
         
     }
 }

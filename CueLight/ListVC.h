@@ -15,6 +15,7 @@
 
 @property (nonatomic, strong) NSMutableArray *cueList;
 @property (nonatomic        ) int showIndex;
+@property (nonatomic        ) int currentCue;
 @property (nonatomic, strong) MPController *mpController;
 @property (nonatomic, strong) ButtonView *button;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

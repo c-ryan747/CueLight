@@ -87,6 +87,13 @@
                 [self.delegate recievedMessage:data fromPeer:peerID];
             });
         }
+    } else if ([receivedObject isKindOfClass:[NSArray class]]) {
+        NSArray *recievedArray = receivedObject;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (self.delegate != nil && [self.delegate respondsToSelector:@selector(recieveNewCues:fromPeer:)]) {
+                [self.delegate recieveNewCues:recievedArray fromPeer:peerID];
+            }
+        });
     }
 }
 
@@ -103,16 +110,10 @@
 }
 
 
-- (void)sendString:(NSString *)string ToPeers:(NSArray*)peers
+- (void)sendObject:(id)obj ToPeers:(NSArray*)peers
 {
     if (peers.count > 0) {
-        [self.session sendData:[NSKeyedArchiver archivedDataWithRootObject:string] toPeers:peers withMode:MCSessionSendDataReliable error:nil];
-    }
-}
-- (void)sendDictionary:(NSDictionary *)dict ToPeers:(NSArray*)peers
-{
-    if (peers.count > 0) {
-        [self.session sendData:[NSKeyedArchiver archivedDataWithRootObject:dict] toPeers:peers withMode:MCSessionSendDataReliable error:nil];
+        [self.session sendData:[NSKeyedArchiver archivedDataWithRootObject:obj] toPeers:peers withMode:MCSessionSendDataReliable error:nil];
     }
 }
 
