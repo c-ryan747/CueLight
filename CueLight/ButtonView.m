@@ -16,6 +16,9 @@
     if (self) {
         [self.window bringSubviewToFront:self];
         
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        CGFloat screenWidth = screenRect.size.width;
+        
         states = @[@{@"colour":[UIColor greenColor] , @"text":@"Relax"      , @"flashing":@NO},
                    @{@"colour":[UIColor orangeColor], @"text":@"Get Ready"  , @"flashing":@YES},
                    @{@"colour":[UIColor greenColor] , @"text":@"Ready"      , @"flashing":@NO},
@@ -25,7 +28,7 @@
         
         self.backgroundColor = [UIColor grayColor];
         
-        self.colourView = [[UIView alloc]initWithFrame:CGRectMake(7, 17, 306, 84)];
+        self.colourView = [[UIView alloc]initWithFrame:CGRectMake(7, 17, screenWidth-14, 84)];
         [self addSubview:self.colourView];
         
 //        [UIView animateWithDuration:6.0 animations:^{
@@ -37,14 +40,14 @@
 //        UIVisualEffectView *blur = [[UIVisualEffectView alloc]initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
 //        blur.frame = self.frame;
 //        [self addSubview:blur];
-        UIToolbar* blur = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        UIToolbar* blur = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 108)];
         [blur setBarStyle:UIBarStyleDefault];
         [self addSubview:blur];
 
         
         
         self.button = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.button.frame = CGRectMake(10, 15, 300, 78);
+        self.button.frame = CGRectMake(10, 15, screenWidth-20, 78);
         [self.button setTitle:states[self.stateCount][@"text"] forState:UIControlStateNormal];
         [self.button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         self.button.titleLabel.font = [UIFont boldSystemFontOfSize:32.0];
@@ -61,12 +64,12 @@
         [self changeColour:states[self.stateCount][@"colour"] animated:NO];
         
         
-        self.connectionOverlay = [[UIView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        self.connectionOverlay = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 108)];
         self.connectionOverlay.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
         self.connectionOverlay.alpha = 0.f;
         
         UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        spinner.center = CGPointMake(frame.size.width / 2, frame.size.height / 2);
+        spinner.center = CGPointMake(screenWidth / 2, 108 / 2);
         
         [self.connectionOverlay addSubview:spinner];
         
@@ -108,8 +111,7 @@
         return;
     } else {
         [self nextState];
-        
-        [[MPController sharedInstance] sendObject:@"nextState" ToPeers:@[[MPController sharedInstance].controllerID]];
+        [self.delegate sendNextState];
         
     }
 }

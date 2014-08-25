@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "MPController.h"
 
+@protocol ButtonViewDelegate <NSObject>
+@required
+- (void)sendNextState;
+@end
+
 @interface ButtonView : UIView {
     NSArray *states;
 }
@@ -16,6 +21,7 @@
 @property (strong, nonatomic) UIButton *button;
 @property (strong, nonatomic) UIView   *colourView;
 @property (strong, nonatomic) UIView   *connectionOverlay;
+@property (weak  , nonatomic) id <ButtonViewDelegate> delegate;
 @property (        nonatomic) BOOL connected;
 
 - (void)nextState;

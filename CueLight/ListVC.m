@@ -33,20 +33,16 @@
     
     [self.tableView registerClass:[cueTVC class] forCellReuseIdentifier:@"cueCell"];
     
-    
     self.button = [[ButtonView alloc]initWithFrame:CGRectMake(0,64, 320, 108)];
+    self.button.delegate = self;
     [self.button setConnected:NO];
     
-
-
     [self.view addSubview:self.button];
-
-
     [self.tableView setContentInset:UIEdgeInsetsMake(0,0,0,0)];
     [self.tableView setScrollIndicatorInsets:UIEdgeInsetsMake(0,0,0,0)];
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-
 }
+
 
 #pragma mark - Table view data source
 
@@ -65,6 +61,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     if (indexPath.row < self.cueList.count) {
         cueTVC *cell = (cueTVC *)[tableView dequeueReusableCellWithIdentifier:@"cueCell"];
         cell.cueNum.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
@@ -99,7 +96,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == self.cueList.count) {
-        [self.cueList addObject:[NSString stringWithFormat:@"Hello,%lu",self.cueList.count + 1]];
+        [self.cueList addObject:[NSString stringWithFormat:@"Hello,%d this really needs to be a bit longer and descriptive to be useful",(int)self.cueList.count + 1]];
         [self saveCues];
         [self.tableView reloadData];
     }
@@ -107,28 +104,22 @@
 
 - (void)recievedMessage:(NSData *)data fromPeer:(MCPeerID *)peer
 {
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     [self.button nextState];
-    if (self.button.stateCount == 0) {
-        self.currentCue++;
-        [self.tableView setEditing:NO animated:YES];
-        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentCue inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-        [self sendCuesToController];
-    }
 }
-- (void)peerListChanged
+- (void)controllerConnected:(BOOL)connected
 {
-    
-    if ([self.mpController.session.connectedPeers containsObject:self.mpController.controllerID]) {
+    if (connected) {
+        self.currentCue = 0;
         [self.button setConnected:YES];
         [self.button resetState];
+        [self sendCuesToController];
     } else {
         [self.button setConnected:NO];
     }
 }
-
 - (void)sendCuesToController
 {
-    //NSArray *topThree = [self.cueList subarrayWithRange:NSMakeRange(self.currentCue, 3)];
     NSMutableArray *topThree = [NSMutableArray arrayWithArray:@[@"",@"",@""]];
     for (int i=0; i<3; i++) {
         @try {
@@ -141,6 +132,19 @@
     }
     
     [self.mpController sendObject:topThree ToPeers:@[self.mpController.controllerID]];
+}
+
+- (void)sendNextState
+{
+    [self.mpController sendObject:@"nextState" ToPeers:@[self.mpController.controllerID]];
+    if (self.button.stateCount == 0) {
+        if (self.currentCue < self.cueList.count -1) {
+            self.currentCue++;
+            [self.tableView setEditing:NO animated:YES];
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentCue inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        }
+        [self sendCuesToController];
+    }
 }
 
 - (void)setShowIndex:(int)showIndex
@@ -161,6 +165,10 @@
     [self.mpController setupIfNeededWithName:show[@"opRole"]];
     [self.mpController advertiseSelf:YES];
     self.mpController.delegate = self;
+}
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self.mpController disconnect];
 }
 -(NSString *)tableView:(UITableView *)tableView titleForSwipeAccessoryButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {

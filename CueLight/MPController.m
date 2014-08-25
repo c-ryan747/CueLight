@@ -58,15 +58,22 @@
     }
     
 }
-
+- (void)disconnect
+{
+    [self.session disconnect];
+    self.session = nil;
+}
 #pragma mark - Delegate methods
 - (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state {
-    NSDictionary *userInfo = @{ @"peerID": peerID,
-                                @"state" : @(state) };
-    NSLog(@"State info: %@", userInfo);
-    NSLog(@"Message info: %@", userInfo);
     
     dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.controllerID == peerID && state == MCSessionStateNotConnected) {
+            if (self.delegate != nil && [self.delegate respondsToSelector:@selector(controllerConnected:)]) {
+                [self.delegate controllerConnected:NO];
+            }
+            self.controllerID = nil;
+        }
+        
         if (self.delegate != nil && [self.delegate respondsToSelector:@selector(peerListChanged)]) {
             [self.delegate peerListChanged];
         }
@@ -82,9 +89,16 @@
         NSString *recievedString = receivedObject;
         if ([recievedString isEqualToString:@"imTheController"]) {
             self.controllerID = peerID;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (self.delegate != nil && [self.delegate respondsToSelector:@selector(controllerConnected:)]) {
+                    [self.delegate controllerConnected:YES];
+                }
+            });
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate recievedMessage:data fromPeer:peerID];
+                if (self.delegate != nil && [self.delegate respondsToSelector:@selector(recievedMessage:fromPeer:)]) {
+                    [self.delegate recievedMessage:data fromPeer:peerID];
+                }
             });
         }
     } else if ([receivedObject isKindOfClass:[NSArray class]]) {
@@ -112,7 +126,7 @@
 
 - (void)sendObject:(id)obj ToPeers:(NSArray*)peers
 {
-    if (peers.count > 0) {
+    if (peers.count > 0 && self.session) {
         [self.session sendData:[NSKeyedArchiver archivedDataWithRootObject:obj] toPeers:peers withMode:MCSessionSendDataReliable error:nil];
     }
 }

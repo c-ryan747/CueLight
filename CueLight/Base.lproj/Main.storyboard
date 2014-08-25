@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="14A314h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="blq-4E-wf5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="blq-4E-wf5">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
+        <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--ShowVC - Select show-->
+        <!--Select show-->
         <scene sceneID="9fx-fJ-InE">
             <objects>
                 <tableViewController id="xGD-tV-Y8K" customClass="showVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="kBx-X3-wMc">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <prototypes>
-                            <tableViewCell appearanceType="aqua" contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="showCell" textLabel="FW8-6j-Z82" detailTextLabel="8ps-yJ-5am" style="IBUITableViewCellStyleValue1" id="niq-Ge-1nz">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="showCell" textLabel="FW8-6j-Z82" detailTextLabel="8ps-yJ-5am" style="IBUITableViewCellStyleValue1" id="niq-Ge-1nz">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="niq-Ge-1nz" id="NyJ-9Z-xob">
@@ -62,15 +63,14 @@
             </objects>
             <point key="canvasLocation" x="706.5" y="353.25"/>
         </scene>
-        <!--Add ShowVC - Setup-->
+        <!--Setup-->
         <scene sceneID="x6U-4P-3iI">
             <objects>
                 <tableViewController id="FRk-uE-8TJ" customClass="addShowVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="MeJ-0G-09V">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <connections>
                             <outlet property="dataSource" destination="FRk-uE-8TJ" id="U8e-Vp-oVy"/>
                             <outlet property="delegate" destination="FRk-uE-8TJ" id="Um9-DN-Ui3"/>
@@ -95,69 +95,95 @@
             </objects>
             <point key="canvasLocation" x="706" y="1188"/>
         </scene>
-        <!--ListVC - ShowName-->
+        <!--ShowName-->
         <scene sceneID="b7l-Mb-O0z">
             <objects>
-                <viewController title="ShowName" id="VfU-4k-bZs" customClass="ListVC" sceneMemberID="viewController">
+                <viewController title="ShowName" automaticallyAdjustsScrollViewInsets="NO" id="VfU-4k-bZs" customClass="ListVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MlW-vg-0PF"/>
                         <viewControllerLayoutGuide type="bottom" id="OQQ-wz-vAc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="RCD-OL-2qG">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView appearanceType="aqua" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="k91-ig-OH6">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="k91-ig-OH6">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell appearanceType="aqua" contentMode="scaleToFill" ambiguous="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addCell" id="Kx8-Km-bDu">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="addCell" id="Kx8-Km-bDu">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kx8-Km-bDu" id="7Oq-xk-wNf">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button appearanceType="aqua" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D5c-3O-rEH">
+                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D5c-3O-rEH">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="149" y="11" width="22" height="22"/>
-                                                    </variation>
                                                 </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="D5c-3O-rEH" secondAttribute="centerY" constant="-0.25" id="tdK-hv-IdP"/>
+                                                <constraint firstAttribute="centerX" secondItem="D5c-3O-rEH" secondAttribute="centerX" id="uDS-sd-H3d"/>
+                                            </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
                                                     <exclude reference="D5c-3O-rEH"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="tdK-hv-IdP"/>
+                                                    <exclude reference="uDS-sd-H3d"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="subviews">
                                                     <include reference="D5c-3O-rEH"/>
                                                 </mask>
+                                                <mask key="constraints">
+                                                    <include reference="tdK-hv-IdP"/>
+                                                    <include reference="uDS-sd-H3d"/>
+                                                </mask>
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="108" width="320" height="462"/>
-                                </variation>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <constraints>
+                            <constraint firstItem="OQQ-wz-vAc" firstAttribute="top" secondItem="k91-ig-OH6" secondAttribute="bottom" id="DzV-vj-dnY"/>
+                            <constraint firstItem="k91-ig-OH6" firstAttribute="top" secondItem="MlW-vg-0PF" secondAttribute="bottom" constant="108" id="dcu-jU-ZiK"/>
+                            <constraint firstItem="k91-ig-OH6" firstAttribute="width" secondItem="RCD-OL-2qG" secondAttribute="width" id="mWj-2Q-nA5"/>
+                            <constraint firstItem="k91-ig-OH6" firstAttribute="leading" secondItem="RCD-OL-2qG" secondAttribute="leadingMargin" constant="-16" id="w5h-2I-6ZQ">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-8"/>
+                            </constraint>
+                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="k91-ig-OH6"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="dcu-jU-ZiK"/>
+                                <exclude reference="mWj-2Q-nA5"/>
+                                <exclude reference="w5h-2I-6ZQ"/>
+                                <exclude reference="DzV-vj-dnY"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="k91-ig-OH6"/>
                             </mask>
+                            <mask key="constraints">
+                                <include reference="dcu-jU-ZiK"/>
+                                <include reference="mWj-2Q-nA5"/>
+                                <include reference="w5h-2I-6ZQ"/>
+                                <include reference="DzV-vj-dnY"/>
+                            </mask>
                         </variation>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="tableView" destination="k91-ig-OH6" id="519-jU-yob"/>
                     </connections>

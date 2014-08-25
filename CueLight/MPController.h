@@ -14,6 +14,7 @@
 - (void)recievedMessage:(NSData *)data fromPeer:(MCPeerID *)peer;
 - (void)peerListChanged;
 - (void)recieveNewCues:(NSArray *)cues fromPeer:(MCPeerID *)peer;
+- (void)controllerConnected:(BOOL)connected;
 @end
 
 
@@ -31,6 +32,7 @@
 - (void)createBrowser;
 - (void)advertiseSelf:(BOOL)advertise;
 - (void)setupIfNeededWithName:(NSString *)name;
+- (void)disconnect;
 
 - (void)sendObject:(id)obj ToPeers:(NSArray*)peers;
 
