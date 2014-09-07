@@ -14,6 +14,7 @@
 		F25033E2198934FF00598287 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F25033E0198934FF00598287 /* Main.storyboard */; };
 		F25033E4198934FF00598287 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F25033E3198934FF00598287 /* Images.xcassets */; };
 		F25033F0198934FF00598287 /* CueLightTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F25033EF198934FF00598287 /* CueLightTests.m */; };
+		F298B74E19BC64F900F1D6F5 /* AudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = F298B74D19BC64F900F1D6F5 /* AudioController.m */; };
 		F2DFB8B4199911D50028669A /* MPController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DFB8B3199911D50028669A /* MPController.m */; };
 		F2DFB8B6199911EC0028669A /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DFB8B5199911EC0028669A /* MultipeerConnectivity.framework */; };
 		F2DFB8B9199919330028669A /* showVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DFB8B8199919330028669A /* showVC.m */; };
@@ -47,6 +48,8 @@
 		F25033E9198934FF00598287 /* CueLightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CueLightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F25033EE198934FF00598287 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F25033EF198934FF00598287 /* CueLightTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CueLightTests.m; sourceTree = "<group>"; };
+		F298B74C19BC64F900F1D6F5 /* AudioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioController.h; sourceTree = "<group>"; };
+		F298B74D19BC64F900F1D6F5 /* AudioController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioController.m; sourceTree = "<group>"; };
 		F2DFB8B2199911D50028669A /* MPController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPController.h; sourceTree = "<group>"; };
 		F2DFB8B3199911D50028669A /* MPController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPController.m; sourceTree = "<group>"; };
 		F2DFB8B5199911EC0028669A /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
@@ -115,6 +118,8 @@
 				F2FE711D1989390800D9A9D6 /* ListVC.m */,
 				F2DFB8B2199911D50028669A /* MPController.h */,
 				F2DFB8B3199911D50028669A /* MPController.m */,
+				F298B74C19BC64F900F1D6F5 /* AudioController.h */,
+				F298B74D19BC64F900F1D6F5 /* AudioController.m */,
 				F2FE711F1989395D00D9A9D6 /* ButtonView.h */,
 				F2FE71201989395D00D9A9D6 /* ButtonView.m */,
 				F25033E3198934FF00598287 /* Images.xcassets */,
@@ -249,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F298B74E19BC64F900F1D6F5 /* AudioController.m in Sources */,
 				F2FE711E1989390800D9A9D6 /* ListVC.m in Sources */,
 				F22A36FD199BF23A00512C87 /* addShowVC.m in Sources */,
 				F2FE71211989395D00D9A9D6 /* ButtonView.m in Sources */,

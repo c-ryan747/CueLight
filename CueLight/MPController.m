@@ -130,5 +130,10 @@
         [self.session sendData:[NSKeyedArchiver archivedDataWithRootObject:obj] toPeers:peers withMode:MCSessionSendDataReliable error:nil];
     }
 }
-
+- (void)sendFile:(NSURL *)url ToPeer:(MCPeerID *)peer
+{
+    if (peer && self.session) {
+        [self.session sendResourceAtURL:url withName:@"Audio" toPeer:peer withCompletionHandler:nil];
+    }
+}
 @end

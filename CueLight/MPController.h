@@ -35,6 +35,7 @@
 - (void)disconnect;
 
 - (void)sendObject:(id)obj ToPeers:(NSArray*)peers;
+- (void)sendFile:(NSURL *)obj ToPeer:(MCPeerID *)peer;
 
 +(instancetype)sharedInstance;
 
