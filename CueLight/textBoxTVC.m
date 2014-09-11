@@ -10,8 +10,8 @@
 
 @implementation textBoxTVC
 @synthesize textField;
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.textField = [[UITextField alloc]initWithFrame:CGRectMake(10, 7, 300, 30)];
@@ -20,18 +20,6 @@
         [self addSubview:self.textField];
     }
     return self;
-}
-
-- (void)awakeFromNib
-{
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

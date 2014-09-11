@@ -8,13 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
+#import "AudioController.h"
 
 @protocol MPControllerDelegate <NSObject>
+
 @optional
 - (void)recievedMessage:(NSData *)data fromPeer:(MCPeerID *)peer;
 - (void)peerListChanged;
 - (void)recieveNewCues:(NSArray *)cues fromPeer:(MCPeerID *)peer;
 - (void)controllerConnected:(BOOL)connected;
+
 @end
 
 
@@ -27,6 +30,8 @@
 @property (nonatomic, strong) MCAdvertiserAssistant *advertiser;
 @property (nonatomic, weak  ) id <MPControllerDelegate> delegate;
 
++(instancetype)sharedInstance;
+
 - (void)createPeerWithDisplayName:(NSString *)displayName;
 - (void)createSession;
 - (void)createBrowser;
@@ -36,7 +41,5 @@
 
 - (void)sendObject:(id)obj ToPeers:(NSArray*)peers;
 - (void)sendFile:(NSURL *)obj ToPeer:(MCPeerID *)peer;
-
-+(instancetype)sharedInstance;
 
 @end

@@ -11,7 +11,14 @@
 #import "MPController.h"
 
 @interface AudioController : NSObject <AVAudioRecorderDelegate, AVAudioPlayerDelegate>
+
+@property (strong,nonatomic) AVAudioRecorder *recorder;
+@property (strong,nonatomic) AVAudioPlayer *player;
+
++(instancetype)sharedInstance;
 - (void)start;
 - (void)stop;
-- (void)sendToPeer:(MCPeerID *)peer
+- (void)playUrl:(NSURL *)url;
+- (void)sendToPeer:(MCPeerID *)peer;
+- (BOOL)canRecord;
 @end

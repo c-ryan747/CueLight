@@ -11,6 +11,8 @@
 
 #import "MPController.h"
 #import "ButtonView.h"
+#import "ListVC.h"
+#import "cueTVC.h"
 
 @interface ListVC : UIViewController <UITableViewDataSource, UITableViewDelegate, MPControllerDelegate, UITextFieldDelegate, ButtonViewDelegate>
 
@@ -18,8 +20,9 @@
 @property (nonatomic        ) int showIndex;
 @property (nonatomic        ) int currentCue;
 @property (nonatomic, strong) MPController *mpController;
-@property (nonatomic, strong) IBOutlet ButtonView *button;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) ButtonView *button;
+@property (weak,   nonatomic) IBOutlet UITableView *tableView;
+
 - (void)saveCues;
 - (void)setShowIndex:(int)showIndex;
 

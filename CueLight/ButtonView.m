@@ -9,9 +9,10 @@
 #import "ButtonView.h"
 
 @implementation ButtonView
-@synthesize button, stateCount, colourView, connected = _connected;
-- (id)initWithFrame:(CGRect)frame
-{
+@synthesize button, stateCount, colourView, connected = _connected, speakColourView, speakButton;
+
+#pragma mark - Init
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self.window bringSubviewToFront:self];
@@ -19,35 +20,23 @@
         CGRect screenRect = [[UIScreen mainScreen] bounds];
         CGFloat screenWidth = screenRect.size.width;
         
-        states = @[@{@"colour":[UIColor greenColor] , @"text":@"Relax"      , @"flashing":@NO},
-                   @{@"colour":[UIColor orangeColor], @"text":@"Get Ready"  , @"flashing":@YES},
-                   @{@"colour":[UIColor greenColor] , @"text":@"Ready"      , @"flashing":@NO},
-                   @{@"colour":[UIColor orangeColor], @"text":@"Go"        , @"flashing":@YES}];
+        states = @[@{@"colour":[UIColor greenColor] , @"text":@"Relax"},
+                   @{@"colour":[UIColor orangeColor], @"text":@"Get Ready"},
+                   @{@"colour":[UIColor greenColor] , @"text":@"Ready"},
+                   @{@"colour":[UIColor orangeColor], @"text":@"Go"}];
         
         self.stateCount = 0;
         
         self.backgroundColor = [UIColor grayColor];
         
-        self.colourView = [[UIView alloc]initWithFrame:CGRectMake(7, 17, screenWidth-14, 84)];
-        [self addSubview:self.colourView];
-        
-//        [UIView animateWithDuration:6.0 animations:^{
-//            colour.layer.backgroundColor = [UIColor redColor].CGColor;
-//        } completion:NULL];
-        
-        
-        //for ios 8
-//        UIVisualEffectView *blur = [[UIVisualEffectView alloc]initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
-//        blur.frame = self.frame;
-//        [self addSubview:blur];
         UIToolbar* blur = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 108)];
         [blur setBarStyle:UIBarStyleDefault];
-        [self addSubview:blur];
+        
 
         
-        
+        //main button
         self.button = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.button.frame = CGRectMake(10, 15, screenWidth-20, 78);
+        self.button.frame = CGRectMake(10, 15, (2*screenWidth-60)/3, 78);
         [self.button setTitle:states[self.stateCount][@"text"] forState:UIControlStateNormal];
         [self.button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         self.button.titleLabel.font = [UIFont boldSystemFontOfSize:32.0];
@@ -58,11 +47,28 @@
         
         [self.button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
         
-        [self addSubview:self.button];
+        self.colourView = [[UIView alloc]initWithFrame:CGRectMake(7, 17, (2*screenWidth-60)/3 + 6, 84)];
+        [self changeColour:states[self.stateCount][@"colour"] ofViews:@[self.colourView, self.button] animated:NO];
         
         
-        [self changeColour:states[self.stateCount][@"colour"] animated:NO];
+        //speak button
+        self.speakButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.speakButton.frame = CGRectMake(20 +(2*screenWidth-60)/3, 15, (screenWidth-30)/3, 78);
+        [self.speakButton setImage:[UIImage imageNamed:@"MicIcon"] forState:UIControlStateNormal];
+        [self.speakButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        self.speakButton.titleLabel.font = [UIFont boldSystemFontOfSize:32.0];
         
+        self.speakButton.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.speakButton.layer.borderWidth = 2.0;
+        self.speakButton.layer.cornerRadius = 10;
+        self.speakButton.layer.backgroundColor = [UIColor orangeColor].CGColor;
+        
+        [self.speakButton addTarget:self action:@selector(speakButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.speakColourView = [[UIView alloc]initWithFrame:CGRectMake(17 +(2*screenWidth-60)/3, 17, (screenWidth-30)/3 + 6, 84)];
+        [self changeColour:[UIColor orangeColor] ofViews:@[self.speakColourView, self.speakButton] animated:NO];
+        
+    
         
         self.connectionOverlay = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 108)];
         self.connectionOverlay.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
@@ -73,13 +79,23 @@
         
         [self.connectionOverlay addSubview:spinner];
         
+        
+        //add all the subviews in order
+        [self addSubview:self.colourView];
+        [self addSubview:self.speakColourView];
+        [self addSubview:blur];
+        
+        [self addSubview:self.button];
+        [self addSubview:self.speakButton];
+        
         [self addSubview:self.connectionOverlay];
 
     }
     return self;
 }
-- (void)nextState
-{
+
+#pragma mark - State transition
+- (void)nextState {
     if (self.stateCount >= states.count - 1) {
         self.stateCount = 0;
     } else {
@@ -87,26 +103,33 @@
     }
     [self loadState];
 }
-- (void)loadState
-{
+
+- (void)loadState {
     [self.button setTitle:states[self.stateCount][@"text"]   forState:UIControlStateNormal];
-    [self    changeColour:states[self.stateCount][@"colour"] animated:YES];
+    [self    changeColour:states[self.stateCount][@"colour"] ofViews:@[self.colourView, self.button] animated:YES];
 }
-- (void)changeColour:(UIColor *)colour animated:(BOOL)animated
-{
+
+- (void)resetState {
+    self.stateCount = 0;
+    [self loadState];
+}
+
+- (void)changeColour:(UIColor *)colour ofViews:(NSArray *)views animated:(BOOL)animated {
     if (animated) {
         [UIView animateWithDuration:0.5 animations:^{
-            self.colourView.layer.backgroundColor = colour.CGColor;
-            self.button.layer.backgroundColor = colour.CGColor;
+            for (UIView *view in views) {
+                view.layer.backgroundColor = colour.CGColor;
+            }
         } completion:NULL];
     } else {
-        self.colourView.layer.backgroundColor = colour.CGColor;
-        self.button.layer.backgroundColor = colour.CGColor;
-        
+        for (UIView *view in views) {
+            view.layer.backgroundColor = colour.CGColor;
+        }
     }
 }
-- (void)buttonPressed:(id)sender
-{
+
+#pragma mark - Event responce
+- (void)buttonPressed:(id)sender {
     if (self.stateCount == 0 ||self.stateCount == 2) {
         return;
     } else {
@@ -115,10 +138,19 @@
         
     }
 }
--(void)setConnected:(BOOL)connected
-{
+- (void)speakButtonPressed:(id)sender {
+    AudioController *ac = [AudioController sharedInstance];
+    if (ac.canRecord) {
+        if (ac.recorder.recording) {
+            [ac stop];
+            [ac sendToPeer:[MPController sharedInstance].controllerID];
+        } else {
+            [ac start];
+        }
+    }
+}
+-(void)setConnected:(BOOL)connected {
     _connected = connected;
-    
     if (connected) {
         [(UIActivityIndicatorView *)self.connectionOverlay.subviews[0] stopAnimating];
         [UIView animateWithDuration:0.5 animations:^{
@@ -130,10 +162,5 @@
             self.connectionOverlay.alpha = 1.f;
         } completion:NULL];
     }
-}
-- (void)resetState
-{
-    self.stateCount = 0;
-    [self loadState];
 }
 @end

@@ -9,27 +9,28 @@
 #import "AudioController.h"
 
 
-@interface AudioController () {
-    AVAudioRecorder *recorder;
-    AVAudioPlayer *player;
-}
+@interface AudioController ()
 
 @end
 
 @implementation AudioController
+@synthesize recorder, player;
 
-+(instancetype)sharedInstance
-{
++(instancetype)sharedInstance {
     static dispatch_once_t onceToken;
     static AudioController *sharedInstance;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[AudioController alloc] init];
+        [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL response){
+            NSLog(@"Allow microphone use response: %d", response);
+        }];
+        [sharedInstance setup];
     });
+    
     return sharedInstance;
 }
 
-- (void)setup
-{
+- (void)setup {
     
     // Disable Stop/Play button when application launches
 //    [stopButton setEnabled:NO];
@@ -53,49 +54,50 @@
     [recordSetting setValue:[NSNumber numberWithInt: 2] forKey:AVNumberOfChannelsKey];
     
     // Initiate and prepare the recorder
-    recorder = [[AVAudioRecorder alloc] initWithURL:outputFileURL settings:recordSetting error:nil];
-    recorder.delegate = self;
-    recorder.meteringEnabled = YES;
-    [recorder prepareToRecord];
+    self.recorder = [[AVAudioRecorder alloc] initWithURL:outputFileURL settings:recordSetting error:nil];
+    self.recorder.delegate = self;
+    self.recorder.meteringEnabled = YES;
+    [self.recorder prepareToRecord];
 }
 
 
-- (void)stop
-{
-    [recorder stop];
-    
+- (void)stop {
+    [self.recorder stop];
+    NSLog(@"Stoped playing");
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setActive:NO error:nil];
 }
 
-- (void)play
-{
-    if (!recorder.recording){
-        player = [[AVAudioPlayer alloc] initWithContentsOfURL:recorder.url error:nil];
-        [player setDelegate:self];
-        [player play];
+- (void)playUrl:(NSURL *)url {
+    if (!self.recorder.recording){
+        NSLog(@"Playing");
+        self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:recorder.url error:nil];
+        [self.player setDelegate:self];
+        [self.player play];
     }
 }
 
-- (void)start
-{
-    if (!recorder.recording) {
+- (void)start {
+    if (!self.recorder.recording) {
         AVAudioSession *session = [AVAudioSession sharedInstance];
         [session setActive:YES error:nil];
         
-        // Start recording
-        [recorder record];
+        NSLog(@"Start recording");
+        [self.recorder record];
 //        [recordPauseButton setTitle:@"Pause" forState:UIControlStateNormal];
     }
 }
-- (void)sendToPeer:(MCPeerID *)peer
-{
+- (void)sendToPeer:(MCPeerID *)peer {
     [[MPController sharedInstance] sendFile:recorder.url ToPeer:peer];
 }
 
+- (BOOL)canRecord {
+    return YES;
+}
 #pragma mark - AVAudioRecorderDelegate
 
-- (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)avrecorder successfully:(BOOL)flag{
+- (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)avrecorder successfully:(BOOL)flag {
+    NSLog(@"Finished recording");
 //    [recordPauseButton setTitle:@"Record" forState:UIControlStateNormal];
 //    [stopButton setEnabled:NO];
 //    [playButton setEnabled:YES];
@@ -104,7 +106,7 @@
 #pragma mark - AVAudioPlayerDelegate
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
-    //recording finished
+    NSLog(@"Finished playing");
 }
 
 

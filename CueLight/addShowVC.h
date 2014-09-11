@@ -10,5 +10,7 @@
 #import "textBoxTVC.h"
 
 @interface addShowVC : UITableViewController <UITextFieldDelegate>
+
 @property (strong, nonatomic) NSMutableDictionary *showInfo;
+
 @end

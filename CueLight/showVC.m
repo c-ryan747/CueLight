@@ -15,8 +15,8 @@
 @implementation showVC
 @synthesize shows = _shows;
 
-- (void)viewDidLoad
-{
+#pragma mark - Init/reload
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     [self reloadShowData];
@@ -28,39 +28,31 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadShowData) name:@"showDataChanged" object:nil];
 }
 
-- (void)reloadShowData
-{
+- (void)reloadShowData {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     self.shows = [NSMutableArray arrayWithArray:[defaults objectForKey:@"shows"]];
     [self.tableView reloadData];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.shows.count;
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"showCell" forIndexPath:indexPath];
+    
     cell.textLabel.text = self.shows[indexPath.row][@"showName"];
+    
     return cell;
 }
+
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
@@ -70,9 +62,7 @@
         [self.shows removeObjectAtIndex:indexPath.row];
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        
         [defaults setObject:self.shows forKey:@"shows"];
-        
         [defaults synchronize];
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
@@ -81,12 +71,12 @@
     }
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+#pragma mark - transition methods
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if ([segue.identifier isEqualToString:@"goToList"])
-    {
+    
+    if ([segue.identifier isEqualToString:@"goToList"]) {
         ListVC *vc = [segue destinationViewController];
         [vc setShowIndex:(int)indexPath.row];
     }

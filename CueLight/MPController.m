@@ -10,9 +10,9 @@
 
 @implementation MPController
 @synthesize controllerID;
+
 #pragma mark - Own methods
-+(instancetype)sharedInstance
-{
++(instancetype)sharedInstance {
     static dispatch_once_t onceToken;
     static MPController *sharedInstance;
     dispatch_once(&onceToken, ^{
@@ -20,7 +20,6 @@
     });
     return sharedInstance;
 }
-
 
 - (void)createPeerWithDisplayName:(NSString *)displayName {
     self.peerID = [[MCPeerID alloc] initWithDisplayName:displayName];
@@ -45,8 +44,7 @@
     }
 }
 
-- (void)setupIfNeededWithName:(NSString *)name
-{
+- (void)setupIfNeededWithName:(NSString *)name {
     if ([name length] == 0) {
         name = [UIDevice currentDevice].name;
     }
@@ -58,14 +56,14 @@
     }
     
 }
-- (void)disconnect
-{
+
+- (void)disconnect {
     [self.session disconnect];
     self.session = nil;
 }
 #pragma mark - Delegate methods
 - (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state {
-    
+    NSLog(@"Peer changed state:%@", peerID);
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.controllerID == peerID && state == MCSessionStateNotConnected) {
             if (self.delegate != nil && [self.delegate respondsToSelector:@selector(controllerConnected:)]) {
@@ -83,7 +81,6 @@
 }
 
 - (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID {
-    
     id receivedObject = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     if ([receivedObject isKindOfClass:[NSString class]]) {
         NSString *recievedString = receivedObject;
@@ -112,26 +109,27 @@
 }
 
 - (void)session:(MCSession *)session didStartReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID withProgress:(NSProgress *)progress {
-    
+    NSLog(@"Started to recieve file");
 }
 
 - (void)session:(MCSession *)session didFinishReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID atURL:(NSURL *)localURL withError:(NSError *)error {
-    
+    NSLog(@"Recieved file");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[AudioController sharedInstance] playUrl:localURL];
+    });
 }
 
 - (void)session:(MCSession *)session didReceiveStream:(NSInputStream *)stream withName:(NSString *)streamName fromPeer:(MCPeerID *)peerID {
     
 }
 
-
-- (void)sendObject:(id)obj ToPeers:(NSArray*)peers
-{
+- (void)sendObject:(id)obj ToPeers:(NSArray*)peers {
     if (peers.count > 0 && self.session) {
         [self.session sendData:[NSKeyedArchiver archivedDataWithRootObject:obj] toPeers:peers withMode:MCSessionSendDataReliable error:nil];
     }
 }
-- (void)sendFile:(NSURL *)url ToPeer:(MCPeerID *)peer
-{
+
+- (void)sendFile:(NSURL *)url ToPeer:(MCPeerID *)peer {
     if (peer && self.session) {
         [self.session sendResourceAtURL:url withName:@"Audio" toPeer:peer withCompletionHandler:nil];
     }
