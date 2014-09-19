@@ -9,7 +9,9 @@
 #import "AudioController.h"
 
 
-@interface AudioController ()
+@interface AudioController () {
+    NSNotificationCenter *_center;
+}
 
 @end
 
@@ -35,6 +37,7 @@
     // Disable Stop/Play button when application launches
 //    [stopButton setEnabled:NO];
 //    [playButton setEnabled:NO];
+    _center = [NSNotificationCenter defaultCenter];
     
     // Set the audio file
     
@@ -71,6 +74,8 @@
 - (void)playUrl:(NSURL *)url {
     if (!self.recorder.recording){
         NSLog(@"Playing");
+        [_center postNotificationName:CLStartedPlaying object:self];
+        
         self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:recorder.url error:nil];
         [self.player setDelegate:self];
         [self.player play];
@@ -83,6 +88,8 @@
         [session setActive:YES error:nil];
         
         NSLog(@"Start recording");
+        [_center postNotificationName:CLStartedRecording object:self];
+        
         [self.recorder record];
 //        [recordPauseButton setTitle:@"Pause" forState:UIControlStateNormal];
     }
@@ -98,6 +105,7 @@
 
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)avrecorder successfully:(BOOL)flag {
     NSLog(@"Finished recording");
+    [_center postNotificationName:CLFinishedRecording object:self];
 //    [recordPauseButton setTitle:@"Record" forState:UIControlStateNormal];
 //    [stopButton setEnabled:NO];
 //    [playButton setEnabled:YES];
@@ -107,6 +115,7 @@
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
     NSLog(@"Finished playing");
+    [_center postNotificationName:CLFinishedPlaying object:self];
 }
 
 

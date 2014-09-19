@@ -14,6 +14,7 @@
 		F25033E2198934FF00598287 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F25033E0198934FF00598287 /* Main.storyboard */; };
 		F25033E4198934FF00598287 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F25033E3198934FF00598287 /* Images.xcassets */; };
 		F25033F0198934FF00598287 /* ButtonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F25033EF198934FF00598287 /* ButtonTests.m */; };
+		F2962FB119CB13770070495A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = F2962FB019CB13770070495A /* Constants.m */; };
 		F298B74E19BC64F900F1D6F5 /* AudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = F298B74D19BC64F900F1D6F5 /* AudioController.m */; };
 		F2DFB8B4199911D50028669A /* MPController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DFB8B3199911D50028669A /* MPController.m */; };
 		F2DFB8B6199911EC0028669A /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DFB8B5199911EC0028669A /* MultipeerConnectivity.framework */; };
@@ -48,6 +49,7 @@
 		F25033E9198934FF00598287 /* CueLightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CueLightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F25033EE198934FF00598287 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F25033EF198934FF00598287 /* ButtonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ButtonTests.m; sourceTree = "<group>"; };
+		F2962FB019CB13770070495A /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		F298B74C19BC64F900F1D6F5 /* AudioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioController.h; sourceTree = "<group>"; };
 		F298B74D19BC64F900F1D6F5 /* AudioController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioController.m; sourceTree = "<group>"; };
 		F2DFB8B2199911D50028669A /* MPController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPController.h; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				F298B74D19BC64F900F1D6F5 /* AudioController.m */,
 				F2FE711F1989395D00D9A9D6 /* ButtonView.h */,
 				F2FE71201989395D00D9A9D6 /* ButtonView.m */,
+				F2962FB019CB13770070495A /* Constants.m */,
 				F25033E3198934FF00598287 /* Images.xcassets */,
 				F25033D6198934FF00598287 /* Supporting Files */,
 			);
@@ -254,6 +257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2962FB119CB13770070495A /* Constants.m in Sources */,
 				F298B74E19BC64F900F1D6F5 /* AudioController.m in Sources */,
 				F2FE711E1989390800D9A9D6 /* ListVC.m in Sources */,
 				F22A36FD199BF23A00512C87 /* addShowVC.m in Sources */,

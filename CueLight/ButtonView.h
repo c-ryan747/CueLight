@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "MPController.h"
 #import "AudioController.h"
+#import "Constants.m"
 
 @protocol ButtonViewDelegate <NSObject>
 
 @required
 - (void)sendNextState;
+- (void)speakButtonPressed;
 
 @end
 

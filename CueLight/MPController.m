@@ -115,7 +115,9 @@
 - (void)session:(MCSession *)session didFinishReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID atURL:(NSURL *)localURL withError:(NSError *)error {
     NSLog(@"Recieved file");
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[AudioController sharedInstance] playUrl:localURL];
+        if (self.delegate != nil && [self.delegate respondsToSelector:@selector(recievedAudioAtURL:fromPeer:)]) {
+            [self.delegate recievedAudioAtURL:localURL fromPeer:peerID];
+        }
     });
 }
 

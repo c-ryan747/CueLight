@@ -9,7 +9,7 @@
 #import "ButtonView.h"
 
 @implementation ButtonView
-@synthesize button, stateCount, colourView, connected = _connected, speakColourView, speakButton;
+@synthesize button, stateCount, colourView, connected = _connected, speakColourView, speakButton, delegate = _delegate;
 
 #pragma mark - Init
 - (id)initWithFrame:(CGRect)frame {
@@ -63,7 +63,6 @@
         self.speakButton.layer.cornerRadius = 10;
         self.speakButton.layer.backgroundColor = [UIColor orangeColor].CGColor;
         
-        [self.speakButton addTarget:self action:@selector(speakButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         
         self.speakColourView = [[UIView alloc]initWithFrame:CGRectMake(17 +(2*screenWidth-60)/3, 17, (screenWidth-30)/3 + 6, 84)];
         [self changeColour:[UIColor orangeColor] ofViews:@[self.speakColourView, self.speakButton] animated:NO];
@@ -89,7 +88,6 @@
         [self addSubview:self.speakButton];
         
         [self addSubview:self.connectionOverlay];
-
     }
     return self;
 }
@@ -129,6 +127,11 @@
 }
 
 #pragma mark - Event responce
+- (void)setDelegate:(id<ButtonViewDelegate>)delegate {
+    _delegate = delegate;
+    [self.speakButton addTarget:delegate action:@selector(speakButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+}
+
 - (void)buttonPressed:(id)sender {
     if (self.stateCount == 0 ||self.stateCount == 2) {
         return;
@@ -138,17 +141,7 @@
         
     }
 }
-- (void)speakButtonPressed:(id)sender {
-    AudioController *ac = [AudioController sharedInstance];
-    if (ac.canRecord) {
-        if (ac.recorder.recording) {
-            [ac stop];
-            [ac sendToPeer:[MPController sharedInstance].controllerID];
-        } else {
-            [ac start];
-        }
-    }
-}
+
 -(void)setConnected:(BOOL)connected {
     _connected = connected;
     if (connected) {

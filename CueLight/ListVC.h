@@ -17,6 +17,7 @@
 @interface ListVC : UIViewController <UITableViewDataSource, UITableViewDelegate, MPControllerDelegate, UITextFieldDelegate, ButtonViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *cueList;
+@property (nonatomic, strong) NSMutableArray *audioList;
 @property (nonatomic        ) int showIndex;
 @property (nonatomic        ) int currentCue;
 @property (nonatomic, strong) MPController *mpController;

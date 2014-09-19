@@ -12,7 +12,7 @@
 @end
 
 @implementation ListVC
-@synthesize cueList, button, showIndex = _showIndex, currentCue = _currentCue;
+@synthesize cueList, button, showIndex = _showIndex, currentCue = _currentCue, audioList = _audioList;
 
 #pragma mark - Initlization and disconnect
 - (void)setShowIndex:(int)showIndex {
@@ -134,6 +134,10 @@
     [self.button nextState];
 }
 
+- (void)recievedAudioAtURL:(NSURL *)url fromPeer:(MCPeerID *)peer {
+    [[AudioController sharedInstance] playUrl:url];;
+}
+
 - (void)controllerConnected:(BOOL)connected {
     if (connected) {
         self.currentCue = 0;
@@ -170,6 +174,21 @@
             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentCue inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
         }
         [self sendCuesToController];
+    }
+}
+
+- (void)speakButtonPressed {
+    AudioController *ac = [AudioController sharedInstance];
+    if (!ac.recorder.recording && !ac.player.playing) {
+        if (self.audioList.count != 0) {
+            [ac playUrl:self.audioList[0]];
+            [self.audioList removeObjectAtIndex:0];
+        } else {
+            [ac start];
+        }
+    } else if (ac.recorder.recording) {
+        [ac stop];
+        [ac sendToPeer:[MPController sharedInstance].controllerID];
     }
 }
 

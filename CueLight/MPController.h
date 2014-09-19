@@ -16,6 +16,7 @@
 - (void)recievedMessage:(NSData *)data fromPeer:(MCPeerID *)peer;
 - (void)peerListChanged;
 - (void)recieveNewCues:(NSArray *)cues fromPeer:(MCPeerID *)peer;
+- (void)recievedAudioAtURL:(NSURL *)url fromPeer:(MCPeerID *)peer;
 - (void)controllerConnected:(BOOL)connected;
 
 @end
