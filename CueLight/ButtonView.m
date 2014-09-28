@@ -129,7 +129,7 @@
 #pragma mark - Event responce
 - (void)setDelegate:(id<ButtonViewDelegate>)delegate {
     _delegate = delegate;
-    [self.speakButton addTarget:delegate action:@selector(speakButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.speakButton addTarget:delegate action:@selector(speakButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)buttonPressed:(id)sender {

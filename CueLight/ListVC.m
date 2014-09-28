@@ -149,7 +149,7 @@
     }
 }
 
-- (void)sendCuesToController {
+- (NSArray *)getNextThreeCues {
     NSMutableArray *topThree = [NSMutableArray arrayWithArray:@[@"",@"",@""]];
     for (int i=0; i<3; i++) {
         @try {
@@ -160,8 +160,12 @@
             topThree[i] = @"";
         }
     }
+    return topThree;
+}
+
+- (void)sendCuesToController {
     
-    [self.mpController sendObject:topThree ToPeers:@[self.mpController.controllerID]];
+    [self.mpController sendObject:[self getNextThreeCues] ToPeers:@[self.mpController.controllerID]];
 }
 
 #pragma mark - Misc methods

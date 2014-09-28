@@ -13,7 +13,7 @@
 		F25033DC198934FF00598287 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F25033DB198934FF00598287 /* AppDelegate.m */; };
 		F25033E2198934FF00598287 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F25033E0198934FF00598287 /* Main.storyboard */; };
 		F25033E4198934FF00598287 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F25033E3198934FF00598287 /* Images.xcassets */; };
-		F25033F0198934FF00598287 /* ButtonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F25033EF198934FF00598287 /* ButtonTests.m */; };
+		F25033F0198934FF00598287 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = F25033EF198934FF00598287 /* Tests.m */; };
 		F2962FB119CB13770070495A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = F2962FB019CB13770070495A /* Constants.m */; };
 		F298B74E19BC64F900F1D6F5 /* AudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = F298B74D19BC64F900F1D6F5 /* AudioController.m */; };
 		F2DFB8B4199911D50028669A /* MPController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DFB8B3199911D50028669A /* MPController.m */; };
@@ -48,7 +48,7 @@
 		F25033E3198934FF00598287 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F25033E9198934FF00598287 /* CueLightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CueLightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F25033EE198934FF00598287 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F25033EF198934FF00598287 /* ButtonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ButtonTests.m; sourceTree = "<group>"; };
+		F25033EF198934FF00598287 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		F2962FB019CB13770070495A /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		F298B74C19BC64F900F1D6F5 /* AudioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioController.h; sourceTree = "<group>"; };
 		F298B74D19BC64F900F1D6F5 /* AudioController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioController.m; sourceTree = "<group>"; };
@@ -144,7 +144,7 @@
 		F25033EC198934FF00598287 /* CueLightTests */ = {
 			isa = PBXGroup;
 			children = (
-				F25033EF198934FF00598287 /* ButtonTests.m */,
+				F25033EF198934FF00598287 /* Tests.m */,
 				F25033ED198934FF00598287 /* Supporting Files */,
 			);
 			path = CueLightTests;
@@ -275,7 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F25033F0198934FF00598287 /* ButtonTests.m in Sources */,
+				F25033F0198934FF00598287 /* Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

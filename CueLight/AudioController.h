@@ -17,9 +17,11 @@
 @property (strong,nonatomic) AVAudioPlayer *player;
 
 +(instancetype)sharedInstance;
+
 - (void)start;
 - (void)stop;
 - (void)playUrl:(NSURL *)url;
 - (void)sendToPeer:(MCPeerID *)peer;
 - (BOOL)canRecord;
+
 @end

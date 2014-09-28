@@ -26,5 +26,5 @@
 
 - (void)saveCues;
 - (void)setShowIndex:(int)showIndex;
-
+- (NSArray *)getNextThreeCues;
 @end

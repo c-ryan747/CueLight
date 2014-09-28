@@ -18,6 +18,7 @@
 @implementation AudioController
 @synthesize recorder, player;
 
+#pragma mark - Init
 +(instancetype)sharedInstance {
     static dispatch_once_t onceToken;
     static AudioController *sharedInstance;
@@ -33,10 +34,6 @@
 }
 
 - (void)setup {
-    
-    // Disable Stop/Play button when application launches
-//    [stopButton setEnabled:NO];
-//    [playButton setEnabled:NO];
     _center = [NSNotificationCenter defaultCenter];
     
     // Set the audio file
@@ -63,7 +60,7 @@
     [self.recorder prepareToRecord];
 }
 
-
+#pragma mark - Methods
 - (void)stop {
     [self.recorder stop];
     NSLog(@"Stoped playing");
@@ -91,24 +88,17 @@
         [_center postNotificationName:CLStartedRecording object:self];
         
         [self.recorder record];
-//        [recordPauseButton setTitle:@"Pause" forState:UIControlStateNormal];
     }
 }
 - (void)sendToPeer:(MCPeerID *)peer {
     [[MPController sharedInstance] sendFile:recorder.url ToPeer:peer];
 }
 
-- (BOOL)canRecord {
-    return YES;
-}
 #pragma mark - AVAudioRecorderDelegate
 
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)avrecorder successfully:(BOOL)flag {
     NSLog(@"Finished recording");
     [_center postNotificationName:CLFinishedRecording object:self];
-//    [recordPauseButton setTitle:@"Record" forState:UIControlStateNormal];
-//    [stopButton setEnabled:NO];
-//    [playButton setEnabled:YES];
 }
 
 #pragma mark - AVAudioPlayerDelegate
