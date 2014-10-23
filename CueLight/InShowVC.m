@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 Callum Ryan. All rights reserved.
 //
 
-#import "ListVC.h"
+#import "InShowVC.h"
 
-@interface ListVC ()
+@interface InShowVC ()
 @end
 
-@implementation ListVC
+@implementation InShowVC
 @synthesize cueList, button, showIndex = _showIndex, currentCue = _currentCue, audioList = _audioList;
 
 #pragma mark - Initlization and disconnect
@@ -40,7 +40,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    [self.tableView registerClass:[cueTVC class] forCellReuseIdentifier:@"cueCell"];
+    [self.tableView registerClass:[CueTVC class] forCellReuseIdentifier:@"cueCell"];
     
     self.button = [[ButtonView alloc]initWithFrame:CGRectMake(0,64, 320, 108)];
     self.button.delegate = self;
@@ -70,7 +70,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row < self.cueList.count) {
-        cueTVC *cell = (cueTVC *)[tableView dequeueReusableCellWithIdentifier:@"cueCell"];
+        CueTVC *cell = (CueTVC *)[tableView dequeueReusableCellWithIdentifier:@"cueCell"];
         cell.cueNum.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
         cell.textField.text = self.cueList[indexPath.row];
         cell.textField.delegate = self;
@@ -80,7 +80,6 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"addCell"];
         return cell;
     }
-
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -115,6 +114,7 @@
 -(void)tableView:(UITableView *)tableView swipeAccessoryButtonPushedForRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView setEditing:NO animated:YES];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    self.currentCue = indexPath.row;
 }
 
 #pragma mark - Text field delegate methods
@@ -135,7 +135,7 @@
 }
 
 - (void)recievedAudioAtURL:(NSURL *)url fromPeer:(MCPeerID *)peer {
-    [[AudioController sharedInstance] playUrl:url];;
+    [[AudioController sharedInstance] playUrl:url];
 }
 
 - (void)controllerConnected:(BOOL)connected {
@@ -155,8 +155,7 @@
         @try {
             NSString *text = self.cueList[self.currentCue + i];
             topThree[i] = [NSString stringWithFormat:@"%d. %@", i+1, text];
-        }
-        @catch (NSException *exception) {
+        } @catch (NSException *exception) {
             topThree[i] = @"";
         }
     }

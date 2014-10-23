@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Callum Ryan. All rights reserved.
 //
 
-#import "showVC.h"
+#import "SelectShowVC.h"
 
-@interface showVC ()
+@interface SelectShowVC ()
 
 @end
 
-@implementation showVC
+@implementation SelectShowVC
 @synthesize shows = _shows;
 
 #pragma mark - Init/reload
@@ -77,7 +77,7 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if ([segue.identifier isEqualToString:@"goToList"]) {
-        ListVC *vc = [segue destinationViewController];
+        InShowVC *vc = [segue destinationViewController];
         [vc setShowIndex:(int)indexPath.row];
     }
 }

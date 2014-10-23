@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface cueTVC : UITableViewCell <UITextFieldDelegate>
+@interface CueTVC : UITableViewCell <UITextFieldDelegate>
 
 @property UITextField *textField;
 @property UILabel *cueNum;

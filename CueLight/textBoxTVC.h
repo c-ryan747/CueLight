@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface textBoxTVC : UITableViewCell
+@interface TextBoxTVC : UITableViewCell
 
 @property (strong, nonatomic) UITextField *textField;
 

@@ -11,10 +11,10 @@
 
 #import "MPController.h"
 #import "ButtonView.h"
-#import "ListVC.h"
-#import "cueTVC.h"
+#import "InShowVC.h"
+#import "CueTVC.h"
 
-@interface ListVC : UIViewController <UITableViewDataSource, UITableViewDelegate, MPControllerDelegate, UITextFieldDelegate, ButtonViewDelegate>
+@interface InShowVC : UIViewController <UITableViewDataSource, UITableViewDelegate, MPControllerDelegate, UITextFieldDelegate, ButtonViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *cueList;
 @property (nonatomic, strong) NSMutableArray *audioList;

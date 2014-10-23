@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F20CE6F9199E3DAF0009AFA6 /* textBoxTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F20CE6F8199E3DAF0009AFA6 /* textBoxTVC.m */; };
-		F22A36FD199BF23A00512C87 /* addShowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F22A36FC199BF23A00512C87 /* addShowVC.m */; };
+		F20CE6F9199E3DAF0009AFA6 /* TextBoxTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F20CE6F8199E3DAF0009AFA6 /* TextBoxTVC.m */; };
+		F22A36FD199BF23A00512C87 /* CreateShowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F22A36FC199BF23A00512C87 /* CreateShowVC.m */; };
 		F25033D9198934FF00598287 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F25033D8198934FF00598287 /* main.m */; };
 		F25033DC198934FF00598287 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F25033DB198934FF00598287 /* AppDelegate.m */; };
 		F25033E2198934FF00598287 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F25033E0198934FF00598287 /* Main.storyboard */; };
@@ -18,10 +18,10 @@
 		F298B74E19BC64F900F1D6F5 /* AudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = F298B74D19BC64F900F1D6F5 /* AudioController.m */; };
 		F2DFB8B4199911D50028669A /* MPController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DFB8B3199911D50028669A /* MPController.m */; };
 		F2DFB8B6199911EC0028669A /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DFB8B5199911EC0028669A /* MultipeerConnectivity.framework */; };
-		F2DFB8B9199919330028669A /* showVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DFB8B8199919330028669A /* showVC.m */; };
-		F2FE711E1989390800D9A9D6 /* ListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FE711D1989390800D9A9D6 /* ListVC.m */; };
+		F2DFB8B9199919330028669A /* SelectShowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DFB8B8199919330028669A /* SelectShowVC.m */; };
+		F2FE711E1989390800D9A9D6 /* InShowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FE711D1989390800D9A9D6 /* InShowVC.m */; };
 		F2FE71211989395D00D9A9D6 /* ButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FE71201989395D00D9A9D6 /* ButtonView.m */; };
-		F2FE712419893B2E00D9A9D6 /* cueTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FE712319893B2E00D9A9D6 /* cueTVC.m */; };
+		F2FE712419893B2E00D9A9D6 /* CueTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FE712319893B2E00D9A9D6 /* CueTVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +35,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F20CE6F7199E3DAF0009AFA6 /* textBoxTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = textBoxTVC.h; sourceTree = "<group>"; };
-		F20CE6F8199E3DAF0009AFA6 /* textBoxTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = textBoxTVC.m; sourceTree = "<group>"; };
-		F22A36FB199BF23A00512C87 /* addShowVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addShowVC.h; sourceTree = "<group>"; };
-		F22A36FC199BF23A00512C87 /* addShowVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addShowVC.m; sourceTree = "<group>"; };
+		F20CE6F7199E3DAF0009AFA6 /* TextBoxTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextBoxTVC.h; sourceTree = "<group>"; };
+		F20CE6F8199E3DAF0009AFA6 /* TextBoxTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextBoxTVC.m; sourceTree = "<group>"; };
+		F22A36FB199BF23A00512C87 /* CreateShowVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateShowVC.h; sourceTree = "<group>"; };
+		F22A36FC199BF23A00512C87 /* CreateShowVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateShowVC.m; sourceTree = "<group>"; };
 		F25033D3198934FF00598287 /* CueLight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CueLight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F25033D7198934FF00598287 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F25033D8198934FF00598287 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -55,14 +55,14 @@
 		F2DFB8B2199911D50028669A /* MPController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPController.h; sourceTree = "<group>"; };
 		F2DFB8B3199911D50028669A /* MPController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPController.m; sourceTree = "<group>"; };
 		F2DFB8B5199911EC0028669A /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
-		F2DFB8B7199919330028669A /* showVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = showVC.h; sourceTree = "<group>"; };
-		F2DFB8B8199919330028669A /* showVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = showVC.m; sourceTree = "<group>"; };
-		F2FE711C1989390800D9A9D6 /* ListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListVC.h; sourceTree = "<group>"; };
-		F2FE711D1989390800D9A9D6 /* ListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListVC.m; sourceTree = "<group>"; };
+		F2DFB8B7199919330028669A /* SelectShowVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectShowVC.h; sourceTree = "<group>"; };
+		F2DFB8B8199919330028669A /* SelectShowVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectShowVC.m; sourceTree = "<group>"; };
+		F2FE711C1989390800D9A9D6 /* InShowVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InShowVC.h; sourceTree = "<group>"; };
+		F2FE711D1989390800D9A9D6 /* InShowVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InShowVC.m; sourceTree = "<group>"; };
 		F2FE711F1989395D00D9A9D6 /* ButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonView.h; sourceTree = "<group>"; };
 		F2FE71201989395D00D9A9D6 /* ButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonView.m; sourceTree = "<group>"; };
-		F2FE712219893B2E00D9A9D6 /* cueTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cueTVC.h; sourceTree = "<group>"; };
-		F2FE712319893B2E00D9A9D6 /* cueTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cueTVC.m; sourceTree = "<group>"; };
+		F2FE712219893B2E00D9A9D6 /* CueTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CueTVC.h; sourceTree = "<group>"; };
+		F2FE712319893B2E00D9A9D6 /* CueTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CueTVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,16 +108,16 @@
 				F25033DA198934FF00598287 /* AppDelegate.h */,
 				F25033DB198934FF00598287 /* AppDelegate.m */,
 				F25033E0198934FF00598287 /* Main.storyboard */,
-				F20CE6F7199E3DAF0009AFA6 /* textBoxTVC.h */,
-				F20CE6F8199E3DAF0009AFA6 /* textBoxTVC.m */,
-				F22A36FB199BF23A00512C87 /* addShowVC.h */,
-				F22A36FC199BF23A00512C87 /* addShowVC.m */,
-				F2DFB8B7199919330028669A /* showVC.h */,
-				F2DFB8B8199919330028669A /* showVC.m */,
-				F2FE712219893B2E00D9A9D6 /* cueTVC.h */,
-				F2FE712319893B2E00D9A9D6 /* cueTVC.m */,
-				F2FE711C1989390800D9A9D6 /* ListVC.h */,
-				F2FE711D1989390800D9A9D6 /* ListVC.m */,
+				F20CE6F7199E3DAF0009AFA6 /* TextBoxTVC.h */,
+				F20CE6F8199E3DAF0009AFA6 /* TextBoxTVC.m */,
+				F22A36FB199BF23A00512C87 /* CreateShowVC.h */,
+				F22A36FC199BF23A00512C87 /* CreateShowVC.m */,
+				F2DFB8B7199919330028669A /* SelectShowVC.h */,
+				F2DFB8B8199919330028669A /* SelectShowVC.m */,
+				F2FE712219893B2E00D9A9D6 /* CueTVC.h */,
+				F2FE712319893B2E00D9A9D6 /* CueTVC.m */,
+				F2FE711C1989390800D9A9D6 /* InShowVC.h */,
+				F2FE711D1989390800D9A9D6 /* InShowVC.m */,
 				F2DFB8B2199911D50028669A /* MPController.h */,
 				F2DFB8B3199911D50028669A /* MPController.m */,
 				F298B74C19BC64F900F1D6F5 /* AudioController.h */,
@@ -259,15 +259,15 @@
 			files = (
 				F2962FB119CB13770070495A /* Constants.m in Sources */,
 				F298B74E19BC64F900F1D6F5 /* AudioController.m in Sources */,
-				F2FE711E1989390800D9A9D6 /* ListVC.m in Sources */,
-				F22A36FD199BF23A00512C87 /* addShowVC.m in Sources */,
+				F2FE711E1989390800D9A9D6 /* InShowVC.m in Sources */,
+				F22A36FD199BF23A00512C87 /* CreateShowVC.m in Sources */,
 				F2FE71211989395D00D9A9D6 /* ButtonView.m in Sources */,
 				F25033DC198934FF00598287 /* AppDelegate.m in Sources */,
 				F25033D9198934FF00598287 /* main.m in Sources */,
-				F2DFB8B9199919330028669A /* showVC.m in Sources */,
-				F20CE6F9199E3DAF0009AFA6 /* textBoxTVC.m in Sources */,
+				F2DFB8B9199919330028669A /* SelectShowVC.m in Sources */,
+				F20CE6F9199E3DAF0009AFA6 /* TextBoxTVC.m in Sources */,
 				F2DFB8B4199911D50028669A /* MPController.m in Sources */,
-				F2FE712419893B2E00D9A9D6 /* cueTVC.m in Sources */,
+				F2FE712419893B2E00D9A9D6 /* CueTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ListVC.h"
+#import "InShowVC.h"
 
-@interface showVC : UITableViewController
+@interface SelectShowVC : UITableViewController
 
 @property (nonatomic, strong) NSMutableArray *shows;
 

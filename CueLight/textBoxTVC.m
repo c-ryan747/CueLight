@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Callum Ryan. All rights reserved.
 //
 
-#import "textBoxTVC.h"
+#import "TextBoxTVC.h"
 
-@implementation textBoxTVC
+@implementation TextBoxTVC
 @synthesize textField;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {

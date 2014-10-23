@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 Callum Ryan. All rights reserved.
 //
 
-#import "addShowVC.h"
+#import "CreateShowVC.h"
 
-@interface addShowVC ()
+@interface CreateShowVC ()
 @end
 
-@implementation addShowVC
+@implementation CreateShowVC
 @synthesize showInfo;
 
 #pragma mark - Init
@@ -20,7 +20,7 @@
     
     self.showInfo = [NSMutableDictionary dictionaryWithCapacity:2];
     
-    [self.tableView registerClass:[textBoxTVC class] forCellReuseIdentifier:@"textCell"];
+    [self.tableView registerClass:[TextBoxTVC class] forCellReuseIdentifier:@"textCell"];
 }
 
 #pragma mark - Table view data source
@@ -33,7 +33,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    textBoxTVC *cell = (textBoxTVC *)[tableView dequeueReusableCellWithIdentifier:@"textCell" forIndexPath:indexPath];
+    TextBoxTVC *cell = (TextBoxTVC *)[tableView dequeueReusableCellWithIdentifier:@"textCell" forIndexPath:indexPath];
     
     cell.textField.tag = indexPath.section+1;
     cell.textField.delegate = self;
@@ -71,11 +71,11 @@
         
     } else {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-        NSInteger currentMaxShowID = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentMaxShowID"];
-        self.showInfo[@"showID"] = [NSNumber numberWithLong:currentMaxShowID + 1];
-        [[NSUserDefaults standardUserDefaults] setInteger:currentMaxShowID + 1 forKey:@"currentMaxShowID"];
-        
+//
+//        NSInteger currentMaxShowID = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentMaxShowID"];
+//        self.showInfo[@"showID"] = [NSNumber numberWithLong:currentMaxShowID + 1];
+//        [[NSUserDefaults standardUserDefaults] setInteger:currentMaxShowID + 1 forKey:@"currentMaxShowID"];
+//        
         self.showInfo[@"cues"] = [NSArray array];
         
         NSMutableArray *shows = [NSMutableArray arrayWithArray:[defaults objectForKey:@"shows"]];

@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Callum Ryan. All rights reserved.
 //
 
-#import "cueTVC.h"
+#import "CueTVC.h"
 
-@implementation cueTVC
+@implementation CueTVC
 @synthesize cueNum, textField;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {

@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "ButtonView.h"
-#import "ListVC.h"
+#import "InShowVC.h"
 
 @interface Tests : XCTestCase
 
@@ -39,7 +39,7 @@
 
 - (void)testNextThree
 {
-    ListVC *vc = [[ListVC alloc]init];
+    InShowVC *vc = [[InShowVC alloc]init];
     vc.cueList = [@[@"A",@"B",@"C",@"D",@"E",@"F"] mutableCopy];
     
     NSArray *expectedResult = @[];

@@ -22,6 +22,5 @@
 - (void)stop;
 - (void)playUrl:(NSURL *)url;
 - (void)sendToPeer:(MCPeerID *)peer;
-- (BOOL)canRecord;
 
 @end
