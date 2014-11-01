@@ -1,27 +1,29 @@
 //
-//  cueTVC.m
+//  CueTVC.m
 //  CueLight
 //
-//  Created by Callum Ryan on 30/07/2014.
+//  Created by Callum Ryan on 27/10/2014.
 //  Copyright (c) 2014 Callum Ryan. All rights reserved.
 //
 
 #import "CueTVC.h"
 
 @implementation CueTVC
-@synthesize cueNum, textField;
+
+@synthesize cueNum = _cueNum, textField = _textField;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.cueNum = [[UILabel alloc] initWithFrame:CGRectMake(20, 7, 30, 30)];
         
-        self.textField = [[UITextField alloc] initWithFrame:CGRectMake(70, 7, 230, 30)];
+        //  Make textfield fill rest of cell
+        self.textField = [[UITextField alloc] initWithFrame:CGRectMake(70, 7, self.frame.size.width - 90, 30)];
         self.textField.returnKeyType = UIReturnKeyDone;
     
+        //  Add views
         [self.contentView addSubview:self.textField];
         [self.contentView addSubview:self.cueNum];
-        
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }

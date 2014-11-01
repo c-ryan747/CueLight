@@ -2,18 +2,21 @@
 //  ButtonView.h
 //  CueLight
 //
-//  Created by Callum Ryan on 30/07/2014.
+//  Created by Callum Ryan on 27/10/2014.
 //  Copyright (c) 2014 Callum Ryan. All rights reserved.
+//
+//  Description : UIView subclass that creates the UI for the main button
 //
 
 #import <UIKit/UIKit.h>
 #import "MPController.h"
+
 #import "AudioController.h"
 #import "Constants.m"
 
+//  Protocol for other objects getting data from this class
 @protocol ButtonViewDelegate <NSObject>
 
-@required
 - (void)sendNextState;
 - (void)speakButtonPressed;
 
@@ -24,17 +27,22 @@
 }
 
 @property (        nonatomic) int stateCount;
+
+//  Main button views
 @property (strong, nonatomic) UIButton *button;
 @property (strong, nonatomic) UIView   *colourView;
+
+//  Speak button views
 @property (strong, nonatomic) UIButton *speakButton;
 @property (strong, nonatomic) UIView   *speakColourView;
+
+//  Connection properties
 @property (strong, nonatomic) UIView   *connectionOverlay;
-@property (weak  , nonatomic) id <ButtonViewDelegate> delegate;
 @property (        nonatomic) BOOL connected;
+
+@property (weak  , nonatomic) id <ButtonViewDelegate> delegate;
 
 - (void)nextState;
 - (void)resetState;
-
-- (void)changeColour:(UIColor *)colour ofViews:(NSArray *)views animated:(BOOL)animated;
 
 @end

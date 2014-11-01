@@ -1,25 +1,25 @@
 //
-//  addShowVC.m
+//  CreateShowVC.m
 //  CueLight
 //
-//  Created by Callum Ryan on 13/08/2014.
+//  Created by Callum Ryan on 27/10/2014.
 //  Copyright (c) 2014 Callum Ryan. All rights reserved.
 //
 
 #import "CreateShowVC.h"
 
-@interface CreateShowVC ()
-@end
-
 @implementation CreateShowVC
-@synthesize showInfo;
+
+@synthesize showInfo = _showInfo;
 
 #pragma mark - Init
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //  Create blank array
     self.showInfo = [NSMutableDictionary dictionaryWithCapacity:2];
     
+    //  Required registering of used UITableViewCells for management
     [self.tableView registerClass:[TextBoxTVC class] forCellReuseIdentifier:@"textCell"];
 }
 
@@ -33,6 +33,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    //  Create new cell and assign delegate as self
     TextBoxTVC *cell = (TextBoxTVC *)[tableView dequeueReusableCellWithIdentifier:@"textCell" forIndexPath:indexPath];
     
     cell.textField.tag = indexPath.section+1;
@@ -43,55 +44,66 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return @"Shown name";
+    switch (section) {
+        case 0:
+            return @"Shown name";
+            break;
+        case 1:
+            return @"Operator role";
+            break;
+        default:
+            return @"";
+            break;
     }
-    return @"Operator role";
 }
 
 #pragma mark - Textfield delegate
 - (void)textFieldDidChange:(UITextField *)textField {
-    if (textField.tag == 1) {
-        self.showInfo[@"showName"] = textField.text;
-    } else {
-        self.showInfo[@"opRole"] = textField.text;
+    //  Update showInfo with inputted text
+    switch (textField.tag) {
+        case 0:
+            self.showInfo[@"opRole"] = textField.text;
+            break;
+        case 1:
+            self.showInfo[@"showName"] = textField.text;
+            break;
     }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)aTextfield {
+    //  Remove the keyboard from display
     [aTextfield resignFirstResponder];
+    
     return YES;
 }
 
 #pragma mark - Button actions
 - (IBAction)finish:(id)sender {
+    //  if user hasnt inputted data, show error message, else save then dismiss
     if ([(NSString *)self.showInfo[@"showName"] length] == 0 && [(NSString *)self.showInfo[@"opRole"] length] == 0) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Please complete all fields" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
         [alert show];
-        
     } else {
+        //  Get current information
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//
-//        NSInteger currentMaxShowID = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentMaxShowID"];
-//        self.showInfo[@"showID"] = [NSNumber numberWithLong:currentMaxShowID + 1];
-//        [[NSUserDefaults standardUserDefaults] setInteger:currentMaxShowID + 1 forKey:@"currentMaxShowID"];
-//        
         self.showInfo[@"cues"] = [NSArray array];
-        
         NSMutableArray *shows = [NSMutableArray arrayWithArray:[defaults objectForKey:@"shows"]];
         
+        //  Update
         [shows addObject:self.showInfo];
         
+        //  Save & notify
         [defaults setObject:shows forKey:@"shows"];
-        
         [defaults synchronize];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"showDataChanged" object:self];
         
+        //  Dismiss
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
 - (IBAction)cancel:(id)sender {
+    //  Dismiss on cancel button press
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
