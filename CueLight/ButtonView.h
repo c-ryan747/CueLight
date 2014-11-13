@@ -35,6 +35,7 @@
 //  Speak button views
 @property (strong, nonatomic) UIButton *speakButton;
 @property (strong, nonatomic) UIView   *speakColourView;
+@property (strong, nonatomic) NSString *speakButtonState;
 
 //  Connection properties
 @property (strong, nonatomic) UIView   *connectionOverlay;

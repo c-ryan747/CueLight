@@ -42,7 +42,7 @@
 + (instancetype)sharedInstance;
 
 //  Controlling methods
-- (void)setupIfNeededWithName:(NSString *)name;
+- (void)setupWithName:(NSString *)name;
 - (void)createBrowser;
 - (void)advertiseSelf:(BOOL)advertise;
 - (void)disconnect;

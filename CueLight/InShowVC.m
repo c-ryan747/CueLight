@@ -32,11 +32,12 @@
     //  Update UI and temp storage
     self.title = show[@"showName"];
     self.cueList = [NSMutableArray arrayWithArray:show[@"cues"]];
+    self.audioList = [NSMutableArray array];
     
     //  Create networking controller with show info
     self.mpController = [MPController sharedInstance];
     
-    [self.mpController setupIfNeededWithName:show[@"opRole"]];
+    [self.mpController setupWithName:show[@"opRole"]];
     [self.mpController advertiseSelf:YES];
     self.mpController.delegate = self;
 }
@@ -57,6 +58,18 @@
     [self.tableView setContentInset:UIEdgeInsetsMake(0,0,0,0)];
     [self.tableView setScrollIndicatorInsets:UIEdgeInsetsMake(0,0,0,0)];
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    
+    //  Setup button view notification handlers
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserverForName:CLFinishedPlaying object:nil queue:nil usingBlock:^(NSNotification *notification) {
+        if ([self.button.speakButtonState  isEqualToString:@"Playing"]) {
+            if (self.audioList.count > 0) {
+                self.button.speakButtonState = @"Received";
+            } else {
+                self.button.speakButtonState = @"Normal";
+            }
+        }
+    }];
 }
 
 //  Disconnect from network when the view goes off screen
@@ -155,9 +168,11 @@
 }
 
 //  When audio is recieved, add to cue and update UI
-#warning Not finished
 - (void)recievedAudioAtURL:(NSURL *)url fromPeer:(MCPeerID *)peer {
-    [[AudioController sharedInstance] playUrl:url];
+    [self.audioList addObject:url];
+    if (![self.button.speakButtonState isEqualToString:@"Recording"] || ![self.button.speakButtonState isEqualToString:@"Playing"]) {
+        self.button.speakButtonState = @"Received";
+    }
 }
 
 //  Update to repersent if the controller is connected
@@ -203,7 +218,7 @@
     //  if starting new cycle
     if (self.button.stateCount == 0) {
         // if not on last cue, update UI and currentCue
-        if (self.currentCue < self.cueList.count -1) {
+        if (self.currentCue < self.cueList.count - 1 && self.cueList.count != 0) {
             self.currentCue++;
             [self.tableView setEditing:NO animated:YES];
             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentCue inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
@@ -217,19 +232,33 @@
 //  Handle audio button data
 - (void)speakButtonPressed {
     AudioController *ac = [AudioController sharedInstance];
-    //  if normal
-    if (!ac.recorder.recording && !ac.player.playing) {
-        // if audio left, play it, else start recoring
-        if (self.audioList.count != 0) {
-            [ac playUrl:self.audioList[0]];
-            [self.audioList removeObjectAtIndex:0];
+    
+    if (ac.recorder.recording) {
+        if (self.audioList.count > 0) {
+            self.button.speakButtonState = @"Received";
         } else {
-            [ac start];
+            self.button.speakButtonState = @"Normal";
         }
-    //  else if  recording, stop recoding and send audio to controller
-    } else if (ac.recorder.recording) {
+        
         [ac stop];
-        [ac sendToPeer:[MPController sharedInstance].controllerID];
+        [ac sendToPeer:self.mpController.controllerID];
+    } else if (ac.player.playing) {
+        if (self.audioList.count > 0) {
+            self.button.speakButtonState = @"Received";
+        } else {
+            self.button.speakButtonState = @"Normal";
+        }
+        
+        [ac.player stop];
+    } else if ([self.button.speakButtonState isEqualToString:@"Normal"]) {
+        self.button.speakButtonState = @"Recording";
+        
+        [ac start];
+    } else if ([self.button.speakButtonState isEqualToString:@"Received"]) {
+        self.button.speakButtonState = @"Playing";
+        
+        [ac playUrl:self.audioList[0]];
+        [self.audioList removeObjectAtIndex:0];
     }
 }
 

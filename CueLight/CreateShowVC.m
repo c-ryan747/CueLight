@@ -36,7 +36,7 @@
     //  Create new cell and assign delegate as self
     TextBoxTVC *cell = (TextBoxTVC *)[tableView dequeueReusableCellWithIdentifier:@"textCell" forIndexPath:indexPath];
     
-    cell.textField.tag = indexPath.section+1;
+    cell.textField.tag = indexPath.section;
     cell.textField.delegate = self;
     [cell.textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     
@@ -62,10 +62,10 @@
     //  Update showInfo with inputted text
     switch (textField.tag) {
         case 0:
-            self.showInfo[@"opRole"] = textField.text;
+            self.showInfo[@"showName"] = textField.text;
             break;
         case 1:
-            self.showInfo[@"showName"] = textField.text;
+            self.showInfo[@"opRole"] = textField.text;
             break;
     }
 }
@@ -80,7 +80,7 @@
 #pragma mark - Button actions
 - (IBAction)finish:(id)sender {
     //  if user hasnt inputted data, show error message, else save then dismiss
-    if ([(NSString *)self.showInfo[@"showName"] length] == 0 && [(NSString *)self.showInfo[@"opRole"] length] == 0) {
+    if ([(NSString *)self.showInfo[@"showName"] length] == 0 || [(NSString *)self.showInfo[@"opRole"] length] == 0) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Please complete all fields" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
         [alert show];
     } else {

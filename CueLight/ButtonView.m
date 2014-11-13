@@ -16,7 +16,7 @@
 
 @implementation ButtonView
 
-@synthesize button = _button, stateCount = _stateCount, colourView = _colourView, connected = _connected, speakColourView = _speakColourView, speakButton = _speakButton, delegate = _delegate;
+@synthesize button = _button, stateCount = _stateCount, colourView = _colourView, connected = _connected, speakColourView = _speakColourView, speakButton = _speakButton, delegate = _delegate, speakButtonState = _speakButtonState;
 
 #pragma mark - Init
 - (id)initWithFrame:(CGRect)frame {
@@ -61,20 +61,16 @@
         //  Speak button
         self.speakButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.speakButton.frame = CGRectMake(20 +(2*screenWidth-60)/3, 15, (screenWidth-30)/3, 78);
-        [self.speakButton setImage:[UIImage imageNamed:@"MicIcon"] forState:UIControlStateNormal];
         [self.speakButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         self.speakButton.titleLabel.font = [UIFont boldSystemFontOfSize:32.0];
         
         self.speakButton.layer.borderColor = [UIColor whiteColor].CGColor;
         self.speakButton.layer.borderWidth = 2.0;
         self.speakButton.layer.cornerRadius = 10;
-        self.speakButton.layer.backgroundColor = [UIColor orangeColor].CGColor;
-        
-        [self.button addTarget:self action:@selector(speakButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         
         self.speakColourView = [[UIView alloc]initWithFrame:CGRectMake(17 +(2*screenWidth-60)/3, 17, (screenWidth-30)/3 + 6, 84)];
-        [self changeColour:[UIColor orangeColor] ofViews:@[self.speakColourView, self.speakButton] animated:NO];
         
+        self.speakButtonState = @"Normal";
     
         //  Connection
         self.connectionOverlay = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 108)];
@@ -144,6 +140,27 @@
     }
 }
 
+- (void)setSpeakButtonState:(NSString *)speakButtonState {
+    _speakButtonState = speakButtonState;
+    if ([speakButtonState isEqualToString:@"Normal"]) {
+        [self changeColour:[UIColor greenColor] ofViews:@[self.speakColourView, self.speakButton] animated:YES];
+        [self.speakButton setTitle:nil   forState:UIControlStateNormal];
+        [self.speakButton setImage:[UIImage imageNamed:@"MicIcon"] forState:UIControlStateNormal];
+    } else if ([speakButtonState isEqualToString:@"Recording"]) {
+        [self changeColour:[UIColor orangeColor] ofViews:@[self.speakColourView, self.speakButton] animated:YES];
+        [self.speakButton setTitle:@"..."   forState:UIControlStateNormal];
+        [self.speakButton setImage:nil forState:UIControlStateNormal];
+    } else if ([speakButtonState isEqualToString:@"Received"]) {
+        [self changeColour:[UIColor redColor] ofViews:@[self.speakColourView, self.speakButton] animated:YES];
+        [self.speakButton setTitle:nil   forState:UIControlStateNormal];
+        [self.speakButton setImage:[UIImage imageNamed:@"SpeakerIcon"] forState:UIControlStateNormal];
+    } else if ([speakButtonState isEqualToString:@"Playing"]) {
+        [self changeColour:[UIColor orangeColor] ofViews:@[self.speakColourView, self.speakButton] animated:YES];
+        [self.speakButton setTitle:@"..."   forState:UIControlStateNormal];
+        [self.speakButton setImage:nil forState:UIControlStateNormal];
+    }
+}
+
 #pragma mark - Event responce
 //  Set delegate and update target
 - (void)setDelegate:(id<ButtonViewDelegate>)delegate {
@@ -162,10 +179,6 @@
     }
 }
 
-#warning Not finished
-- (void)speakButtonPressed:(id)sender {
-
-}
 
 -(void)setConnected:(BOOL)connected {
     //  update variable

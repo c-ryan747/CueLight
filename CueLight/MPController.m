@@ -33,16 +33,12 @@
 }
 
 //  Main init method, create name, peerID ans session if needed
-- (void)setupIfNeededWithName:(NSString *)name {
+- (void)setupWithName:(NSString *)name {
     if ([name length] == 0) {
         name = [UIDevice currentDevice].name;
     }
-    if (!self.peerID) {
-        [self createPeerWithDisplayName:name];
-    }
-    if (!self.session) {
-        [self createSession];
-    }
+    [self createPeerWithDisplayName:name];
+    [self createSession];
     
 }
 
