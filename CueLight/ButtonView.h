@@ -26,22 +26,22 @@
     NSArray *states;
 }
 
-@property (        nonatomic) int stateCount;
+@property int stateCount;
 
 //  Main button views
-@property (strong, nonatomic) UIButton *button;
-@property (strong, nonatomic) UIView   *colourView;
+@property UIButton *button;
+@property UIView   *colourView;
 
 //  Speak button views
-@property (strong, nonatomic) UIButton *speakButton;
-@property (strong, nonatomic) UIView   *speakColourView;
-@property (strong, nonatomic) NSString *speakButtonState;
+@property UIButton *speakButton;
+@property UIView   *speakColourView;
+@property (nonatomic) NSString *speakButtonState;
 
 //  Connection properties
-@property (strong, nonatomic) UIView   *connectionOverlay;
-@property (        nonatomic) BOOL connected;
+@property UIView   *connectionOverlay;
+@property (nonatomic) BOOL connected;
 
-@property (weak  , nonatomic) id <ButtonViewDelegate> delegate;
+@property (nonatomic, weak) id <ButtonViewDelegate> delegate;
 
 - (void)nextState;
 - (void)resetState;

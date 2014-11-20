@@ -18,6 +18,6 @@
 //      -> showName - String
 //      -> opRole - String
 
-@property (strong, nonatomic) NSMutableDictionary *showInfo;
+@property NSMutableDictionary *showInfo;
 
 @end

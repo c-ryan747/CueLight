@@ -17,8 +17,6 @@
 
 @implementation MPController
 
-@synthesize controllerID = _controllerID;
-
 #pragma mark - Own methods
 //  Create only one instance of this object
 +(instancetype)sharedInstance {

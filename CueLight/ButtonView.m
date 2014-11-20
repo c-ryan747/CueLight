@@ -16,8 +16,6 @@
 
 @implementation ButtonView
 
-@synthesize button = _button, stateCount = _stateCount, colourView = _colourView, connected = _connected, speakColourView = _speakColourView, speakButton = _speakButton, delegate = _delegate, speakButtonState = _speakButtonState;
-
 #pragma mark - Init
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -35,7 +33,7 @@
         
         self.stateCount = 0;
         
-        self.backgroundColor = [UIColor grayColor];
+        self.backgroundColor = [UIColor whiteColor];
         
         //  Bluring view
         UIToolbar* blur = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 108)];
@@ -84,9 +82,9 @@
         
         
         //add all the subviews in order
-        [self addSubview:self.colourView];
-        [self addSubview:self.speakColourView];
-        [self addSubview:blur];
+//        [self addSubview:self.colourView];
+//        [self addSubview:self.speakColourView];
+//        [self addSubview:blur];
         
         [self addSubview:self.button];
         [self addSubview:self.speakButton];

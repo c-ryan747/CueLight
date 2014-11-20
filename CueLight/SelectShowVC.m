@@ -10,8 +10,6 @@
 
 @implementation SelectShowVC
 
-@synthesize shows = _shows;
-
 #pragma mark - Init/reload
 - (void)viewDidLoad {
     [super viewDidLoad];

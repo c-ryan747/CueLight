@@ -10,8 +10,6 @@
 
 @implementation CreateShowVC
 
-@synthesize showInfo = _showInfo;
-
 #pragma mark - Init
 - (void)viewDidLoad {
     [super viewDidLoad];

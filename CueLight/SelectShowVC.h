@@ -19,6 +19,6 @@
 //          -> showName - String
 //          -> opRole - String
 
-@property (nonatomic, strong) NSMutableArray *shows;
+@property NSMutableArray *shows;
 
 @end

@@ -17,8 +17,6 @@
 
 @implementation InShowVC
 
-@synthesize cueList = _cueList, button = _button, showIndex = _showIndex, currentCue = _currentCue, audioList = _audioList;
-
 #pragma mark - Initlization and disconnect
 - (void)setShowIndex:(int)showIndex {
     //  Update property
@@ -228,7 +226,6 @@
     }
 }
 
-#warning Not finished
 //  Handle audio button data
 - (void)speakButtonPressed {
     AudioController *ac = [AudioController sharedInstance];

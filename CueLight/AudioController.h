@@ -17,8 +17,8 @@
 @interface AudioController : NSObject <AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 
 //  iOS audio controllers
-@property (strong,nonatomic) AVAudioRecorder *recorder;
-@property (strong,nonatomic) AVAudioPlayer *player;
+@property AVAudioRecorder *recorder;
+@property AVAudioPlayer *player;
 
 //  singleton access
 + (instancetype)sharedInstance;

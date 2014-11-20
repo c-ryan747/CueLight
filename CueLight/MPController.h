@@ -29,14 +29,14 @@
 @interface MPController : NSObject <MCSessionDelegate>
 
 //  Networking components
-@property (nonatomic, strong) MCPeerID *peerID;
-@property (nonatomic, strong) MCPeerID *controllerID;
-@property (nonatomic, strong) MCSession *session;
-@property (nonatomic, strong) MCBrowserViewController *browser;
-@property (nonatomic, strong) MCAdvertiserAssistant *advertiser;
+@property MCPeerID *peerID;
+@property MCPeerID *controllerID;
+@property MCSession *session;
+@property MCBrowserViewController *browser;
+@property MCAdvertiserAssistant *advertiser;
 
 //  Delegate reference
-@property (nonatomic, weak  ) id <MPControllerDelegate> delegate;
+@property (nonatomic, weak) id <MPControllerDelegate> delegate;
 
 //  Singleton access
 + (instancetype)sharedInstance;

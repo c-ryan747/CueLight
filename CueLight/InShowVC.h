@@ -22,19 +22,19 @@
 //  -> cueList - Array
 //      -> cue description - String
 
-@property (nonatomic, strong) NSMutableArray *cueList;
+@property NSMutableArray *cueList;
 
 //  Array containing references to all unpaid audio
 //  -> audioList - Array
 //      -> audio files - NSURL
 
-@property (nonatomic, strong) NSMutableArray *audioList;
+@property NSMutableArray *audioList;
 
-@property (nonatomic        ) int showIndex;
-@property (nonatomic        ) int currentCue;
-@property (nonatomic, strong) MPController *mpController;
-@property (nonatomic, strong) ButtonView *button;
-@property (nonatomic, weak  ) IBOutlet UITableView *tableView;
+@property MPController *mpController;
+@property ButtonView *button;
+@property int currentCue;
+@property (nonatomic)       int showIndex;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 //  Method called after creation to inform view of show information
 - (void)setShowIndex:(int)showIndex;

@@ -17,8 +17,6 @@
 
 @implementation AudioController
 
-@synthesize recorder = _recorder, player = _player;
-
 #pragma mark - Init
 //  Create only one instance of this class
 +(instancetype)sharedInstance {
