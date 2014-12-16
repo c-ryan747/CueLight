@@ -42,16 +42,17 @@
         //  Main button
         self.button = [UIButton buttonWithType:UIButtonTypeCustom];
         self.button.frame = CGRectMake(10, 15, (2*screenWidth-60)/3, 78);
-        [self.button setTitle:states[self.stateCount][@"text"] forState:UIControlStateNormal];
-        [self.button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         self.button.titleLabel.font = [UIFont boldSystemFontOfSize:32.0];
-        
+
         self.button.layer.borderColor = [UIColor whiteColor].CGColor;
         self.button.layer.borderWidth = 2.0;
         self.button.layer.cornerRadius = 10;
-        
+
+        [self.button setTitle:states[self.stateCount][@"text"] forState:UIControlStateNormal];
+        [self.button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+
         [self.button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        
+
         self.colourView = [[UIView alloc]initWithFrame:CGRectMake(7, 17, (2*screenWidth-60)/3 + 6, 84)];
         [self changeColour:states[self.stateCount][@"colour"] ofViews:@[self.colourView, self.button] animated:NO];
         
@@ -82,9 +83,9 @@
         
         
         //add all the subviews in order
-//        [self addSubview:self.colourView];
-//        [self addSubview:self.speakColourView];
-//        [self addSubview:blur];
+        [self addSubview:self.colourView];
+        [self addSubview:self.speakColourView];
+        [self addSubview:blur];
         
         [self addSubview:self.button];
         [self addSubview:self.speakButton];

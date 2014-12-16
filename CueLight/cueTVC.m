@@ -10,8 +10,6 @@
 
 @implementation CueTVC
 
-@synthesize cueNum = _cueNum, textField = _textField;
-
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {

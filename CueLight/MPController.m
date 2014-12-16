@@ -67,6 +67,7 @@
 - (void)disconnect {
     [self.session disconnect];
     self.session = nil;
+    self.peerID = nil;
 }
 
 #pragma mark - Delegate methods

@@ -24,6 +24,7 @@
     
     //  Register for notification on showDataChanged
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadShowData) name:@"showDataChanged" object:nil];
+    
 }
 
 - (void)reloadShowData {
@@ -64,6 +65,7 @@
         
         //  Update persistent storage
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+       
         [defaults setObject:self.shows forKey:@"shows"];
         [defaults synchronize];
         

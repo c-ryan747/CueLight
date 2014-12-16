@@ -1,11 +1,63 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B23" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="blq-4E-wf5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B23" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="blq-4E-wf5">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Help-->
+        <scene sceneID="wUi-iu-pzg">
+            <objects>
+                <tableViewController id="geH-X2-IZh" customClass="HelpVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Y2e-ez-uuy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlainCell" textLabel="GQS-t6-TZ4" style="IBUITableViewCellStyleDefault" id="PLy-HB-CcN">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PLy-HB-CcN" id="v7z-gb-74f">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GQS-t6-TZ4">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            </variation>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="geH-X2-IZh" id="nfN-Tx-BMi"/>
+                            <outlet property="delegate" destination="geH-X2-IZh" id="TxO-qE-rt6"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Help" id="dry-Wr-UiU">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="0lW-Q2-bxc">
+                            <connections>
+                                <action selector="goBack:" destination="geH-X2-IZh" id="zV7-Pu-y0f"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <navigationBar contentMode="scaleToFill" id="Hvj-Zm-5mP">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <items>
+                        <navigationItem title="Title" id="PvQ-OR-8cC"/>
+                    </items>
+                </navigationBar>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f3a-CR-ztW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2706" y="-361.5"/>
+        </scene>
         <!--Select show-->
         <scene sceneID="9fx-fJ-InE">
             <objects>
@@ -52,6 +104,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Select show" id="z0X-0j-Q2k">
+                        <barButtonItem key="leftBarButtonItem" title="?" id="F8V-fJ-hSb">
+                            <connections>
+                                <segue destination="7eG-OS-6m0" kind="presentation" id="dIg-HD-bTi"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="J3J-mB-hIU">
                             <connections>
                                 <segue destination="VhX-fh-vKA" kind="presentation" id="PiS-N7-zvl"/>
@@ -122,9 +179,6 @@
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="149" y="11" width="22" height="22"/>
-                                                    </variation>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -230,6 +284,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ee-hg-7TT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-298.5" y="1188"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vMh-1P-ZJp">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7eG-OS-6m0" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WMk-0w-TuH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="geH-X2-IZh" kind="relationship" relationship="rootViewController" id="oze-6k-Yra"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mLo-an-mwc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1788" y="-361.5"/>
         </scene>
     </scenes>
 </document>

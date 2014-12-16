@@ -8,6 +8,14 @@
 
 #import "AudioController.h"
 
+dispatch_queue_t backgroundQueue() {
+    static dispatch_once_t queueCreationGuard;
+    static dispatch_queue_t queue;
+    dispatch_once(&queueCreationGuard, ^{
+        queue = dispatch_queue_create("com.callumryan.cuelight", 0);
+    });
+    return queue;
+}
 
 @interface AudioController () {
     NSNotificationCenter *_center;
@@ -46,9 +54,9 @@
     
     //  Define the recorder setting
     NSMutableDictionary *recordSetting = [[NSMutableDictionary alloc] init];
-    [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
-    [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
-    [recordSetting setValue:[NSNumber numberWithInt: 2] forKey:AVNumberOfChannelsKey];
+    recordSetting[AVFormatIDKey]            = [NSNumber numberWithInt:kAudioFormatMPEG4AAC];
+    recordSetting[AVSampleRateKey]          = [NSNumber numberWithFloat:44100.0];
+    recordSetting[AVNumberOfChannelsKey]    = [NSNumber numberWithInt:2];
     
     //  Initiate and prepare the recorder
     self.recorder = [[AVAudioRecorder alloc] initWithURL:outputFileURL settings:recordSetting error:nil];
@@ -77,15 +85,16 @@
 }
 
 - (void)start {
-    //  if not recording, start recording and notify system
-    if (!self.recorder.recording) {
-        AVAudioSession *session = [AVAudioSession sharedInstance];
-        [session setActive:YES error:nil];
-        
-        [self.recorder record];
-        
-        [_center postNotificationName:CLStartedRecording object:self];
-    }
+    dispatch_async(backgroundQueue(), ^{
+        //  if not recording, start recording and notify system
+        if (!self.recorder.recording) {
+            AVAudioSession *session = [AVAudioSession sharedInstance];
+            [session setActive:YES error:nil];
+            
+            [self.recorder record];
+            [_center postNotificationName:CLStartedRecording object:self];
+        }
+    });
 }
 - (void)sendToPeer:(MCPeerID *)peer {
     [[MPController sharedInstance] sendFile:self.recorder.url ToPeer:peer];

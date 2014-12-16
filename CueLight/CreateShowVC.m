@@ -86,7 +86,6 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         self.showInfo[@"cues"] = [NSArray array];
         NSMutableArray *shows = [NSMutableArray arrayWithArray:[defaults objectForKey:@"shows"]];
-        
         //  Update
         [shows addObject:self.showInfo];
         

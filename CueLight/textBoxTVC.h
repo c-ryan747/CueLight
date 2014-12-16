@@ -12,6 +12,6 @@
 
 @interface TextBoxTVC : UITableViewCell
 
-@property (strong, nonatomic) UITextField *textField;
+@property UITextField *textField;
 
 @end
